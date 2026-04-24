@@ -1,0 +1,23 @@
+<script>
+import UsersIcon from './UsersIcon.vue';
+
+export default {
+    props: {
+        count: {
+            type: Number,
+            required: true,
+        }
+    },
+
+    components: {
+        UsersIcon,
+    }
+}
+</script>
+
+<template>
+    <div class='flex items-center px-6 py-3 bg-gray-800 text-white font-bold  rounded-3xl space-x-2'>
+        <UsersIcon />
+        <p class='inline-block'>{{ count }}</p>
+    </div>
+</template>
