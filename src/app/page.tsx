@@ -113,12 +113,15 @@ export default function Home() {
 
           <div className="hidden md:flex items-center gap-4 flex-shrink-0">
             {!user ? (
-              <>
-                <Link href="/login" className="text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors">Login</Link>
+              <div className="flex items-center gap-3">
+                <Link href="/login" className="text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors mr-2">Login</Link>
+                <Link href="/register">
+                  <button className="h-9 px-5 border border-gray-200 text-gray-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-all">Join us</button>
+                </Link>
                 <Link href="/register">
                   <button className="h-9 px-5 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 transition-all">Teach on Visiondrill</button>
                 </Link>
-              </>
+              </div>
             ) : (
               <div className="flex items-center gap-4">
                 <Link href={user.roles?.some((r: any) => r.name === 'author') ? '/instructor' : '/student'}>
@@ -145,20 +148,28 @@ export default function Home() {
             <Link href="/courses" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-gray-600 hover:text-blue-600 py-2.5">Marketplace</Link>
             <a href="#courses" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-gray-600 hover:text-blue-600 py-2.5">Courses</a>
             <a href="#partners" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-gray-600 hover:text-blue-600 py-2.5">Partners</a>
-            <div className="flex gap-3 pt-3 border-t border-gray-100">
+            <div className="flex flex-col gap-3 pt-3 border-t border-gray-100">
               {!user ? (
                 <>
                   <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-                    <button className="h-9 px-5 border border-gray-200 rounded-lg font-semibold text-sm text-gray-600 hover:border-blue-300">Login</button>
+                    <button className="w-full h-10 border border-gray-200 rounded-xl font-semibold text-sm text-gray-600 hover:border-blue-300">Login</button>
                   </Link>
                   <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
-                    <button className="h-9 px-5 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Join now</button>
+                    <button className="w-full h-10 border border-gray-100 rounded-xl font-semibold text-sm text-gray-400 hover:bg-gray-50">Join us</button>
+                  </Link>
+                  <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+                    <button className="w-full h-10 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700">Teach on Visiondrill</button>
                   </Link>
                 </>
               ) : (
-                <Link href={user.roles?.some((r: any) => r.name === 'author') ? '/instructor' : '/student'} onClick={() => setMobileMenuOpen(false)}>
-                  <button className="h-9 px-5 bg-blue-600 text-white rounded-lg font-semibold text-sm">Dashboard</button>
-                </Link>
+                <div className="flex flex-col gap-2">
+                  <Link href={user.roles?.some((r: any) => r.name === 'author') ? '/instructor' : '/student'} onClick={() => setMobileMenuOpen(false)}>
+                    <button className="w-full h-10 bg-blue-600 text-white rounded-xl font-semibold text-sm">Dashboard</button>
+                  </Link>
+                  <Link href="/logout" onClick={() => setMobileMenuOpen(false)}>
+                    <button className="w-full h-10 border border-red-100 text-red-600 rounded-xl font-semibold text-sm">Logout</button>
+                  </Link>
+                </div>
               )}
             </div>
           </div>

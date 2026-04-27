@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { api } from '@/lib/api';
+import { api, getCsrfCookie } from '@/lib/api';
 
 export default function LogoutPage() {
   const router = useRouter();
@@ -10,6 +10,7 @@ export default function LogoutPage() {
   useEffect(() => {
     const performLogout = async () => {
       try {
+        await getCsrfCookie().catch(() => {});
         await api.post('/logout');
       } catch (err) {
         console.error('Logout error:', err);
