@@ -101,7 +101,7 @@ export default function StudentSettingsPage() {
                  </div>
                  <div className="absolute inset-0 bg-blue-600/90 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
                     <Camera size={24} className="mb-2" />
-                    <span className="text-xs font-bold tracking-widest capitalize">Update</span>
+                    <span className="text-xs font-bold capitalize">Update</span>
                  </div>
               </div>
               <h3 className="text-xl font-black text-gray-900 capitalize tracking-tight mb-1">
@@ -128,7 +128,7 @@ export default function StudentSettingsPage() {
               <form onSubmit={handleProfileUpdate} className="space-y-6">
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                       <label className="text-xs font-bold text-gray-500 tracking-widest capitalize">First Name</label>
+                       <label className="text-xs font-bold text-gray-500 capitalize">First Name</label>
                        <input 
                          type="text" 
                          value={profile.first_name}
@@ -137,7 +137,7 @@ export default function StudentSettingsPage() {
                        />
                     </div>
                     <div className="space-y-2">
-                       <label className="text-xs font-bold text-gray-500 tracking-widest capitalize">Last Name</label>
+                       <label className="text-xs font-bold text-gray-500 capitalize">Last Name</label>
                        <input 
                          type="text" 
                          value={profile.last_name}
@@ -149,7 +149,7 @@ export default function StudentSettingsPage() {
 
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                       <label className="text-xs font-bold text-gray-500 tracking-widest capitalize">Email Address</label>
+                       <label className="text-xs font-bold text-gray-500 capitalize">Email Address</label>
                        <div className="relative">
                           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                           <input 
@@ -159,10 +159,10 @@ export default function StudentSettingsPage() {
                             className="w-full bg-gray-100 border border-gray-200 rounded-xl pl-11 pr-4 py-3.5 text-gray-500 font-medium outline-none cursor-not-allowed"
                           />
                        </div>
-                       <p className="text-[10px] text-gray-400 font-bold tracking-wide">Email cannot be changed directly.</p>
+                       <p className="text-xs text-gray-400 font-bold tracking-wide">Email cannot be changed directly.</p>
                     </div>
                     <div className="space-y-2">
-                       <label className="text-xs font-bold text-gray-500 tracking-widest capitalize">Phone Number</label>
+                       <label className="text-xs font-bold text-gray-500 capitalize">Phone Number</label>
                        <div className="relative">
                           <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                           <input 
@@ -179,7 +179,7 @@ export default function StudentSettingsPage() {
                     <button 
                        type="submit"
                        disabled={isSaving}
-                       className="flex items-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl tracking-widest capitalize shadow-xl shadow-blue-100 transition-all active:scale-95"
+                       className="flex items-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl capitalize shadow-xl shadow-blue-100 transition-all active:scale-95"
                     >
                        <Save size={18} /> {isSaving ? 'Saving...' : 'Save Profile'}
                     </button>
@@ -195,7 +195,7 @@ export default function StudentSettingsPage() {
               
               <form onSubmit={handlePasswordUpdate} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div className="md:col-span-2 space-y-2">
-                    <label className="text-xs font-bold text-gray-500 tracking-widest capitalize">Current Password</label>
+                    <label className="text-xs font-bold text-gray-500 capitalize">Current Password</label>
                     <input 
                       type="password" 
                       required
@@ -206,7 +206,7 @@ export default function StudentSettingsPage() {
                  </div>
                  
                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-500 tracking-widest capitalize">New Password</label>
+                    <label className="text-xs font-bold text-gray-500 capitalize">New Password</label>
                     <input 
                       type="password" 
                       required
@@ -217,7 +217,7 @@ export default function StudentSettingsPage() {
                  </div>
 
                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-500 tracking-widest capitalize">Confirm New Password</label>
+                    <label className="text-xs font-bold text-gray-500 capitalize">Confirm New Password</label>
                     <input 
                       type="password" 
                       required
@@ -231,7 +231,7 @@ export default function StudentSettingsPage() {
                     <button 
                        type="submit"
                        disabled={isSaving}
-                       className="flex items-center gap-2 px-8 py-3.5 hover:bg-gray-100 text-gray-900 border border-gray-200 font-black rounded-xl tracking-widest capitalize transition-all active:scale-95"
+                       className="flex items-center gap-2 px-8 py-3.5 hover:bg-gray-100 text-gray-900 border border-gray-200 font-black rounded-xl capitalize transition-all active:scale-95"
                     >
                        Update Password
                     </button>

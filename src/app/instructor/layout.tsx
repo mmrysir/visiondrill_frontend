@@ -1,102 +1,118 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Toaster } from 'react-hot-toast';
-import BrandLogo from '@/components/BrandLogo';
-import { api } from '@/lib/api';
+import { usePathname } from 'next/navigation';
 import { 
+  LayoutDashboard, 
+  BookOpen, 
   Users, 
-  Layout, 
-  Settings, 
   BarChart3, 
+  Settings, 
   LogOut, 
-  PlusCircle, 
-  Zap,
-  Search
+  Plus,
+  MessageSquare,
+  Wallet,
+  Cpu
 } from 'lucide-react';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function InstructorLayout({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<any>(null);
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    api.get('/me').then(res => setUser(res.data)).catch(() => window.location.replace('/login'));
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const navItems = [
+    { name: 'Dashboard', href: '/instructor', icon: LayoutDashboard },
+    { name: 'My courses', href: '/instructor/courses', icon: BookOpen },
+    { name: 'Student assets', href: '/instructor/students', icon: Users },
+    { name: 'Analytics', href: '/instructor/analytics', icon: BarChart3 },
+    { name: 'Inbox', href: '/instructor/messages', icon: MessageSquare },
+  ];
 
-  const handleLogout = async () => {
-    try { await api.post('/logout'); } catch {}
-    window.location.href = '/login';
-  };
+  const utilityItems = [
+    { name: 'AI Generator', href: '/instructor/ai-tools', icon: Cpu },
+    { name: 'Revenue', href: '/instructor/wallet', icon: Wallet },
+    { name: 'Settings', href: '/instructor/settings', icon: Settings },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#FDFDFF] font-sans">
-      <Toaster />
-      <nav className={`fixed top-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'py-1 bg-white/90 backdrop-blur-2xl shadow-sm border-b border-blue-50' : 'py-2 bg-white/50'}`}>
-        <div className="max-w-[1400px] mx-auto px-8 flex justify-between items-center">
-          <div className="flex items-center gap-8">
-            <BrandLogo subtitle="Instructor console" />
-            <div className="flex items-center gap-1 bg-gray-100/30 p-1 rounded-xl border border-gray-100/50">
-              <NavLink href="/instructor" icon={<Layout size={10} />} label="Overview" />
-              <NavLink href="/instructor/courses" icon={<PlusCircle size={10} />} label="Curriculum" />
-              <NavLink href="/instructor/students" icon={<Users size={10} />} label="Learners" />
-              <NavLink href="/instructor/revenue" icon={<BarChart3 size={10} />} label="Finance" />
-            </div>
-          </div>
+    <div className="min-h-screen bg-[#FDFDFF] flex overflow-hidden">
+      {/* 1. Left Sidebar (Fleet Management) */}
+      <aside className="hidden lg:flex w-64 xl:w-72 bg-white border-r border-gray-100 flex-col shrink-0 overflow-y-auto custom-scrollbar">
+        <div className="p-8 pb-12">
+          <BrandLogo subtitle="Instructor" />
+        </div>
 
-          <div className="flex items-center gap-5">
-            <div className="flex items-center relative w-48">
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                <Search size={10} />
-              </div>
-              <input 
-                type="text" 
-                placeholder="Scan..." 
-                className="w-full bg-gray-100/30 border border-transparent focus:bg-white focus:border-blue-100 rounded-lg py-1 pl-8 pr-4 text-[9px] font-black text-gray-900 outline-none transition-all placeholder:uppercase placeholder:tracking-widest"
-              />
-            </div>
-
-            <div className="h-6 w-px bg-gray-100" />
-
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="text-right">
-                  <p className="text-[9px] font-black text-gray-900 leading-none uppercase">{user?.first_name || 'Instructor'}</p>
-                  <p className="text-[7px] font-black text-blue-600 mt-1 uppercase tracking-widest">Expert-Operator</p>
-                </div>
-                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-[9px] shadow-lg shadow-blue-100 italic">
-                  {user?.first_name?.[0] || 'I'}
-                </div>
-              </div>
-              <Link href="/instructor/settings" className="p-1.5 hover:bg-gray-100 hover:text-blue-600 rounded-lg transition-colors text-gray-400">
-                <Settings size={14} />
+        <nav className="flex-1 px-6 space-y-2">
+          <p className="px-4 py-3 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Command</p>
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`
+                  flex items-center gap-4 px-4 py-3.5 rounded-2xl text-xs font-bold transition-all group
+                  ${isActive 
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-100' 
+                    : 'text-gray-400 hover:text-blue-600 hover:bg-blue-50'}
+                `}
+              >
+                <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                {item.name}
               </Link>
-              <button onClick={handleLogout} className="p-1.5 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors text-gray-400">
-                <LogOut size={14} />
-              </button>
-            </div>
+            );
+          })}
+
+          <div className="pt-10">
+            <p className="px-4 py-3 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Intelligence</p>
+            {utilityItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`
+                    flex items-center gap-4 px-4 py-3.5 rounded-2xl text-xs font-bold transition-all
+                    ${isActive 
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-100' 
+                      : 'text-gray-400 hover:text-blue-600 hover:bg-blue-50'}
+                  `}
+                >
+                  <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      <div className="pt-16 pb-10">{children}</div>
-
-      <Link href="/instructor/ai-generator" className="fixed bottom-6 right-6 z-[100] group">
-        <div className="h-10 w-10 bg-gray-950 rounded-xl flex items-center justify-center text-white shadow-2xl transition-transform group-hover:-translate-y-1 border border-white/5">
-          <Zap size={14} className="group-hover:text-blue-400 transition-colors" />
+        <div className="p-8 mt-auto">
+          <Link
+            href="/logout"
+            className="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-xs font-bold text-red-400 hover:bg-red-50 hover:text-red-600 transition-all"
+          >
+            <LogOut size={18} />
+            Logout session
+          </Link>
         </div>
-      </Link>
+      </aside>
+
+      {/* 2. Primary Executive Pane */}
+      <section className="flex-1 flex flex-col min-w-0 bg-[#FDFDFF] overflow-y-auto">
+        {/* Mobile Header (Hidden on Desktop) */}
+        <div className="lg:hidden flex items-center justify-between p-6 bg-white border-b border-gray-100">
+           <BrandLogo subtitle="Instructor" />
+           <button className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+              <Plus size={20} />
+           </button>
+        </div>
+
+        <div className="flex-1 p-6 lg:p-10">
+          {children}
+        </div>
+      </section>
     </div>
-  );
-}
-
-function NavLink({ href, icon, label }: any) {
-  return (
-    <Link href={href} className="flex items-center gap-2 px-3 py-1 rounded-lg text-[9px] font-black text-gray-400 hover:text-blue-600 hover:bg-white transition-all uppercase tracking-widest">
-      {icon} {label}
-    </Link>
   );
 }

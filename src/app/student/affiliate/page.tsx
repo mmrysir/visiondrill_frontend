@@ -3,16 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
 import { 
-  DollarSign, 
   Users, 
-  Link as LinkIcon, 
-  Copy, 
-  ExternalLink, 
+  Wallet, 
   TrendingUp, 
+  ChevronRight, 
+  Copy, 
   CheckCircle2,
   Calendar,
-  Wallet,
-  ArrowRight
+  DollarSign,
+  Loader2
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -22,184 +21,155 @@ export default function AffiliatePage() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const res = await api.get('/student/affiliate-stats');
-        setStats(res.data);
-      } catch (err) {
-        console.error('Failed to load affiliate stats');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchStats();
+    api.get('/student/affiliate-stats')
+      .then(res => setStats(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setIsLoading(false));
   }, []);
 
-  const referralLink = typeof window !== 'undefined' 
-    ? `${window.location.origin}/register?ref=${stats?.affiliate_tag}` 
-    : '';
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(referralLink);
+  const copyRefLink = () => {
+    const link = `${window.location.origin}/register?ref=${stats?.affiliate_tag}`;
+    navigator.clipboard.writeText(link);
     setCopied(true);
     toast.success('Referral link copied!');
     setTimeout(() => setCopied(false), 2000);
   };
 
-  if (isLoading) {
-    return (
-      <div className="max-w-[1600px] mx-auto px-8 animate-pulse space-y-12">
-        <div className="h-40 bg-gray-50 rounded-3xl w-2/3"></div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-           {[1,2,3].map(i => <div key={i} className="h-32 bg-gray-50 rounded-2xl"></div>)}
-        </div>
-      </div>
-    );
-  }
+  if (isLoading) return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+      <Loader2 className="text-blue-600 animate-spin" size={32} />
+      <p className="text-sm font-bold text-gray-400">Loading affiliate ledger...</p>
+    </div>
+  );
 
   return (
-    <div className="max-w-[1600px] mx-auto px-8 pb-32">
-      
-      {/* Header section */}
-      <div className="mb-12">
-         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
-            <div className="max-w-2xl">
-               <div className="flex items-center gap-3 mb-6">
-                  <div className="px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-600 text-[10px] font-black uppercase tracking-widest uppercase">
-                     Affiliate Portal
-                  </div>
-                  <span className="text-gray-400 font-bold text-xs">• Earn {stats?.commission_percentage}% on every referral</span>
-               </div>
-               <h1 className="text-5xl lg:text-7xl font-black text-gray-900 leading-[0.9] tracking-tight mb-8">
-                 Mastery <br />
-                 <span className="bg-gradient-to-r from-blue-600 to-indigo-400 bg-clip-text text-transparent italic">Together.</span>
-               </h1>
-               <p className="text-lg text-gray-400 font-medium leading-relaxed max-w-xl">
-                  Share the VisionDrill curriculum with your network and earn commissions on every successful enrollment.
-               </p>
-            </div>
-
-            <div className="bg-white border border-gray-100 p-8 rounded-3xl shadow-xl shadow-blue-900/5 flex flex-col md:flex-row gap-8 items-center w-full lg:w-fit">
-               <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 shadow-inner">
-                     <Wallet size={32} />
-                  </div>
-                  <div>
-                     <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Available Balance</p>
-                     <p className="text-4xl font-black text-gray-900 tracking-tighter">${stats?.balance?.toFixed(2)}</p>
-                  </div>
-               </div>
-               <div className="h-12 w-px bg-gray-100 hidden md:block"></div>
-               <button className="w-full md:w-fit px-8 py-4 bg-blue-600 text-white font-black rounded-xl text-xs uppercase tracking-widest hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-100">
-                  Withdraw Funds
-               </button>
-            </div>
-         </div>
+    <div className="space-y-12">
+      {/* Header */}
+      <div>
+        <h1 className="text-4xl font-black text-gray-900 tracking-tight mb-2">Affiliate program</h1>
+        <p className="text-sm font-medium text-gray-500 leading-relaxed max-w-2xl">
+          Promote excellence and earn rewards. Get a {stats?.commission_percentage || 10}% commission for every student you refer to VisionDrill.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-         {/* Referral Link Box */}
-         <div className="lg:col-span-2 bg-blue-950 rounded-3xl p-10 text-white relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-blue-600/20 transition-all duration-700"></div>
-            <div className="relative z-10 space-y-8">
-               <div>
-                  <h3 className="text-2xl font-black tracking-tight mb-2">Your Referral Link</h3>
-                  <p className="text-gray-400 text-sm font-medium">Instantly earn when someone registers using this link.</p>
-               </div>
-               
-               <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="flex-1 bg-white/5 border border-white/10 rounded-xl px-6 py-4 font-bold font-sans text-sm text-blue-400 truncate">
-                     {referralLink}
-                  </div>
-                  <button 
-                    onClick={copyToClipboard}
-                    className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 font-black rounded-xl text-xs uppercase tracking-widest hover:bg-blue-400 transition-all"
-                  >
-                     {copied ? <CheckCircle2 size={16} /> : <Copy size={16} />}
-                     {copied ? 'Copied' : 'Copy Link'}
-                  </button>
-               </div>
-            </div>
-         </div>
-
-         {/* Mini Stats Grid */}
-         <div className="grid grid-cols-1 gap-8">
-            <div className="bg-white border border-gray-100 rounded-3xl p-8 flex items-center gap-6 group hover:shadow-xl transition-all">
-               <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Users size={24} />
-               </div>
-               <div>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Referrals</p>
-                  <p className="text-3xl font-black text-gray-900">{stats?.referrals_count || 0}</p>
-               </div>
-            </div>
-            <div className="bg-white border border-gray-100 rounded-3xl p-8 flex items-center gap-6 group hover:shadow-xl transition-all">
-               <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <TrendingUp size={24} />
-               </div>
-               <div>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Lifetime Earning</p>
-                  <p className="text-3xl font-black text-gray-900">${stats?.total_earned?.toFixed(2)}</p>
-               </div>
-            </div>
-         </div>
+      {/* Main Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <FinanceCard 
+           label="Unpaid balance" 
+           value={`KES ${stats?.balance || '0.00'}`} 
+           icon={Wallet} 
+           color="text-blue-600" 
+           bg="bg-blue-50"
+           action="Request payout"
+        />
+        <FinanceCard 
+           label="Total earnings" 
+           value={`KES ${stats?.total_earned || '0.00'}`} 
+           icon={TrendingUp} 
+           color="text-emerald-600" 
+           bg="bg-emerald-50"
+        />
+        <FinanceCard 
+           label="Referred students" 
+           value={stats?.referrals_count?.toString() || '00'} 
+           icon={Users} 
+           color="text-purple-600" 
+           bg="bg-purple-50"
+        />
       </div>
 
-      {/* Referral Table */}
-      <section>
-         <div className="flex items-center justify-between mb-8 px-2">
-            <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Referral Registry</h3>
-            <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
-               <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Active Trackers
-            </div>
-         </div>
-         
-         <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
-            <table className="w-full text-left border-collapse">
-               <thead>
-                  <tr className="border-b border-gray-50">
-                     <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Student Name</th>
-                     <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Joined On</th>
-                     <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Action</th>
-                  </tr>
-               </thead>
-               <tbody className="divide-y divide-gray-50">
-                  {stats?.referred_users?.map((user: any) => (
-                     <tr key={user.id} className="group hover:bg-gray-50/50 transition-colors">
-                        <td className="px-8 py-6">
-                           <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center font-black text-[10px] text-gray-600">
-                                 {user.first_name[0]}{user.last_name[0]}
-                              </div>
-                              <span className="font-bold text-sm text-gray-900">{user.first_name} {user.last_name}</span>
-                           </div>
-                        </td>
-                        <td className="px-8 py-6">
-                           <div className="flex items-center gap-2 text-xs font-medium text-gray-500">
-                              <Calendar size={14} className="text-gray-300" />
-                              {new Date(user.created_at).toLocaleDateString()}
-                           </div>
-                        </td>
-                        <td className="px-8 py-6 text-right">
-                           <button className="text-blue-600 hover:text-blue-700 font-black text-[10px] uppercase tracking-widest">View Activity</button>
-                        </td>
-                     </tr>
-                  ))}
-                  {(!stats?.referred_users || stats.referred_users.length === 0) && (
-                     <tr>
-                        <td colSpan={3} className="px-8 py-20 text-center">
-                           <div className="max-w-xs mx-auto space-y-4">
-                              <DollarSign size={48} className="mx-auto text-gray-100" />
-                              <p className="text-gray-400 font-medium text-sm">No referrals found yet. Share your link to start earning!</p>
-                           </div>
-                        </td>
-                     </tr>
-                  )}
-               </tbody>
-            </table>
-         </div>
-      </section>
+      {/* Referral Link & List */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        {/* Left: Link Generator */}
+        <div className="lg:col-span-5">
+           <div className="bg-white border border-gray-100 p-8 rounded-[2.5rem] shadow-sm">
+              <h3 className="text-xl font-black text-gray-900 mb-6">Your referral link</h3>
+              <div className="space-y-4">
+                 <div className="relative">
+                    <input 
+                      readOnly 
+                      value={`${window.location.origin}/register?ref=${stats?.affiliate_tag || ''}`}
+                      className="w-full bg-gray-50 border border-gray-100 rounded-2xl pl-4 pr-12 py-4 text-sm font-mono text-gray-600"
+                    />
+                    <button 
+                      onClick={copyRefLink}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-white rounded-xl text-gray-400 hover:text-blue-600 transition-all"
+                    >
+                       {copied ? <CheckCircle2 size={20} className="text-emerald-500" /> : <Copy size={20} />}
+                    </button>
+                 </div>
+                 <div className="flex items-center gap-3 p-4 bg-blue-50/50 border border-blue-50 rounded-2xl">
+                    <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shrink-0">
+                       <DollarSign size={16} />
+                    </div>
+                    <p className="text-xs font-bold text-blue-700 leading-tight">
+                       Share this link with your network to earn KES on every enrollment.
+                    </p>
+                 </div>
+              </div>
+           </div>
+        </div>
 
+        {/* Right: Referral List */}
+        <div className="lg:col-span-7">
+           <div className="bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden">
+              <div className="p-8 border-b border-gray-100 flex items-center justify-between">
+                 <h3 className="text-xl font-black text-gray-900">Referral history</h3>
+                 <span className="text-xs font-bold text-gray-400  tracking-widest">{stats?.referred_users?.length || 0} Records</span>
+              </div>
+              <div className="overflow-x-auto">
+                 <table className="w-full text-left">
+                    <thead className="bg-gray-50/50">
+                       <tr>
+                          <th className="px-8 py-4 text-xs font-bold text-gray-400  tracking-widest">Student</th>
+                          <th className="px-8 py-4 text-xs font-bold text-gray-400  tracking-widest text-center">Status</th>
+                          <th className="px-8 py-4 text-xs font-bold text-gray-400  tracking-widest text-right">Joined</th>
+                       </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                       {stats?.referred_users?.map((ref: any) => (
+                         <tr key={ref.id}>
+                            <td className="px-8 py-5">
+                               <p className="font-bold text-gray-900">{ref.first_name} {ref.last_name}</p>
+                            </td>
+                            <td className="px-8 py-5 text-center">
+                               <span className="px-2 py-1 bg-emerald-50 text-emerald-600 rounded text-[10px] font-black  tracking-widest border border-emerald-100">Verified</span>
+                            </td>
+                            <td className="px-8 py-5 text-right font-mono text-xs text-gray-400">
+                               {new Date(ref.created_at).toLocaleDateString('en-GB')}
+                            </td>
+                         </tr>
+                       ))}
+                       {(!stats?.referred_users || stats?.referred_users.length === 0) && (
+                         <tr>
+                            <td colSpan={3} className="px-8 py-12 text-center text-gray-400 font-medium italic">
+                               No referrals recorded yet. Start sharing to see them here.
+                            </td>
+                         </tr>
+                       )}
+                    </tbody>
+                 </table>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FinanceCard({ label, value, icon: Icon, color, bg, action }: any) {
+  return (
+    <div className="bg-white border border-gray-100 p-8 rounded-[2.5rem] shadow-sm hover:shadow-xl hover:shadow-gray-100/50 transition-all group relative overflow-hidden">
+       {action && (
+         <button className="absolute top-8 right-8 text-[10px] font-black text-blue-600  tracking-widest bg-blue-50 px-3 py-1.5 rounded-xl hover:bg-blue-600 hover:text-white transition-all">
+            {action}
+         </button>
+       )}
+       <div className={`${bg} ${color} w-14 h-14 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform`}>
+          <Icon size={28} />
+       </div>
+       <div className="text-3xl font-black text-gray-900 tracking-tighter mb-1 font-mono">{value}</div>
+       <p className="text-xs font-bold text-gray-400  tracking-widest">{label}</p>
     </div>
   );
 }

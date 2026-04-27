@@ -119,14 +119,14 @@ export default function InstructorCourseDetail() {
             <ChevronLeft size={20} />
           </Link>
           <div>
-            <h1 className="text-sm font-black text-gray-900 tracking-tight uppercase leading-none">{course.course_title}</h1>
-            <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Course Management Control</p>
+            <h1 className="text-sm font-black text-gray-900 tracking-tight leading-none">{course.course_title}</h1>
+            <p className="text-xs text-gray-400 font-black mt-1">Course Management Control</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={handlePublishToggle}
-            className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${
+            className={`px-6 py-3 rounded-2xl font-black text-xs transition-all ${
               course.status === 'PUBLISHED'
                 ? 'bg-gray-900 text-white hover:bg-black shadow-xl shadow-gray-200'
                 : isReadyToPublish 
@@ -153,13 +153,13 @@ export default function InstructorCourseDetail() {
                   <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shadow-inner">
                      <SettingsIcon size={24} />
                   </div>
-                  <h3 className="text-xl font-black text-gray-900 uppercase">Configuration</h3>
+                  <h3 className="text-xl font-black text-gray-900">Configuration</h3>
                </div>
                
                <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div className="space-y-6">
                      <div className="space-y-1">
-                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2 block">Course Title</label>
+                        <label className="text-xs font-medium text-gray-400 ml-2 block">Course Title</label>
                         <input 
                            type="text" 
                            value={editTitle}
@@ -169,7 +169,7 @@ export default function InstructorCourseDetail() {
                      </div>
                      <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
-                           <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2 block">Price (USD)</label>
+                           <label className="text-xs font-medium text-gray-400 ml-2 block">Price (USD)</label>
                            <input 
                               type="number" 
                               value={editPrice}
@@ -178,7 +178,7 @@ export default function InstructorCourseDetail() {
                            />
                         </div>
                         <div className="space-y-1">
-                           <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2 block">Level</label>
+                           <label className="text-xs font-medium text-gray-400 ml-2 block">Level</label>
                            <select 
                               value={editLevel}
                               onChange={e => setEditLevel(e.target.value)}
@@ -190,7 +190,7 @@ export default function InstructorCourseDetail() {
                            </select>
                         </div>
                      </div>
-                     <Button onClick={handleUpdate} isLoading={isSaving} className="w-full h-14 bg-gray-900 hover:bg-black text-white rounded-2xl uppercase tracking-widest font-black text-[11px] flex items-center justify-center gap-2">
+                     <Button onClick={handleUpdate} isLoading={isSaving} className="w-full h-14 bg-gray-900 hover:bg-black text-white rounded-2xl font-black text-xs flex items-center justify-center gap-2">
                          Save Configuration
                      </Button>
                   </div>
@@ -199,7 +199,7 @@ export default function InstructorCourseDetail() {
                      <div className="w-32 h-32 bg-white rounded-[2rem] shadow-xl shadow-gray-100 flex items-center justify-center text-gray-300 group-hover:text-blue-500 transition-colors mb-6 overflow-hidden">
                         {course.thumbnail ? <img src={course.thumbnail} className="w-full h-full object-cover" /> : <Globe size={48} />}
                      </div>
-                     <button className="text-[10px] font-black text-blue-600 bg-blue-50 px-4 py-2 rounded-full uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">
+                     <button className="text-xs font-semibold text-blue-600 bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white transition-all">
                         Update Media
                      </button>
                   </div>
@@ -208,11 +208,11 @@ export default function InstructorCourseDetail() {
 
             <div className="bg-white border border-gray-100 rounded-[2.5rem] p-10 shadow-sm">
                <div className="flex items-center justify-between mb-10">
-                  <h3 className="text-xl font-black text-gray-900 uppercase flex items-center gap-3">
+                  <h3 className="text-xl font-black text-gray-900 flex items-center gap-3">
                      <Layout size={24} className="text-purple-600" /> Curriculum Blueprint
                   </h3>
                   <Link href={`/instructor/courses/${id}/curriculum`}>
-                     <Button className="px-6 h-12 bg-purple-50 text-purple-600 hover:bg-purple-600 hover:text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-none">Manage Modules</Button>
+                     <Button className="px-6 h-12 bg-purple-50 text-purple-600 hover:bg-purple-600 hover:text-white text-xs font-black rounded-xl transition-all shadow-none">Manage Modules</Button>
                   </Link>
                </div>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -221,15 +221,15 @@ export default function InstructorCourseDetail() {
                         <div className="flex items-center gap-4">
                            <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center font-black text-xs text-gray-900 shadow-sm">{idx + 1}</div>
                            <div>
-                              <h5 className="font-black text-gray-900 uppercase tracking-tight text-sm truncate max-w-[150px]">{s.title}</h5>
-                              <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{s.lessons?.length || 0} Lessons</p>
+                              <h5 className="font-black text-gray-900 tracking-tight text-sm truncate max-w-[150px]">{s.title}</h5>
+                              <p className="text-xs font-medium text-gray-400">{s.lessons?.length || 0} Lessons</p>
                            </div>
                         </div>
                         <ChevronRight size={16} className="text-gray-200 group-hover:text-purple-600 group-hover:translate-x-1 transition-all" />
                      </div>
                   ))}
                   {(!course.sections || course.sections.length === 0) && (
-                     <div className="col-span-2 py-12 text-center text-gray-300 font-black uppercase text-xs tracking-[0.2em] border-2 border-dashed border-gray-50 rounded-3xl">
+                     <div className="col-span-2 py-12 text-center text-gray-300 font-black text-xs border-2 border-dashed border-gray-50 rounded-3xl">
                         Design your first module
                      </div>
                   )}
@@ -240,7 +240,7 @@ export default function InstructorCourseDetail() {
           {/* Checklist & Students */}
           <div className="space-y-8">
              <div className="bg-white border border-gray-100 rounded-[3rem] p-8 shadow-sm">
-                <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-8 flex items-center gap-2">
+                <h3 className="text-xs font-medium text-gray-400 mb-8 flex items-center gap-2">
                    <ShieldCheck size={14} className="text-green-500" /> Quality Control
                 </h3>
                 <div className="space-y-6">
@@ -249,13 +249,13 @@ export default function InstructorCourseDetail() {
                          <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all ${item.completed ? 'bg-green-500 text-white shadow-lg shadow-green-100' : 'border-2 border-gray-50 text-transparent'}`}>
                             {item.completed && <CheckCircle size={14} />}
                          </div>
-                         <span className={`text-[11px] font-black uppercase tracking-tight ${item.completed ? 'text-gray-900' : 'text-gray-300'}`}>{item.label}</span>
+                         <span className={`text-xs font-black tracking-tight ${item.completed ? 'text-gray-900' : 'text-gray-300'}`}>{item.label}</span>
                       </div>
                    ))}
                 </div>
                 {!isReadyToPublish && (
                    <div className="mt-10 p-6 bg-orange-50/50 rounded-[2rem] border border-orange-100">
-                      <p className="text-[10px] font-black text-orange-700 leading-relaxed uppercase tracking-widest">
+                      <p className="text-xs font-black text-orange-700 leading-relaxed">
                          Course is currently hidden from enrollment. Please complete the blueprint.
                       </p>
                    </div>
@@ -263,7 +263,7 @@ export default function InstructorCourseDetail() {
              </div>
 
              <div className="bg-white border border-gray-100 rounded-[3rem] p-8 shadow-sm">
-                <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-8 flex items-center justify-between">
+                <h3 className="text-xs font-medium text-gray-400 mb-8 flex items-center justify-between">
                    <span className="flex items-center gap-2"> <TrendingUp size={14} className="text-purple-500" /> Global Roster</span>
                    <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full">{students.length}</span>
                 </h3>
@@ -274,12 +274,12 @@ export default function InstructorCourseDetail() {
                             {s.name[0]}
                          </div>
                          <div className="min-w-0">
-                            <p className="text-xs font-black text-gray-900 truncate uppercase tracking-tight">{s.name}</p>
-                            <p className="text-[9px] font-black text-gray-400 truncate tracking-widest">{s.email}</p>
+                            <p className="text-xs font-black text-gray-900 truncate tracking-tight">{s.name}</p>
+                            <p className="text-xs font-medium text-gray-400 truncate">{s.email}</p>
                          </div>
                       </div>
                    ))}
-                   {students.length === 0 && <p className="text-center py-12 text-[10px] font-black text-gray-300 uppercase tracking-[0.2em] italic">Awaiting first enrollment</p>}
+                   {students.length === 0 && <p className="text-center py-12 text-xs font-medium text-gray-300 italic">Awaiting first enrollment</p>}
                 </div>
              </div>
           </div>

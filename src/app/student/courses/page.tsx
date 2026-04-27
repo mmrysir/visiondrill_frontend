@@ -33,7 +33,7 @@ export default function MyCoursesPage() {
       <div className="flex gap-4 border-b border-gray-100 mb-10 overflow-x-auto">
          <button 
            onClick={() => setActiveTab('enrolled')}
-           className={`px-6 py-4 font-bold capitalize tracking-widest text-xs whitespace-nowrap transition-colors ${
+           className={`px-6 py-4 font-bold capitalize text-xs whitespace-nowrap transition-colors ${
              activeTab === 'enrolled' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-400 hover:text-gray-900'
            }`}
          >
@@ -41,7 +41,7 @@ export default function MyCoursesPage() {
          </button>
          <button 
            onClick={() => setActiveTab('wishlist')}
-           className={`px-6 py-4 font-bold capitalize tracking-widest text-xs whitespace-nowrap transition-colors ${
+           className={`px-6 py-4 font-bold capitalize text-xs whitespace-nowrap transition-colors ${
              activeTab === 'wishlist' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-400 hover:text-gray-900'
            }`}
          >
@@ -49,7 +49,7 @@ export default function MyCoursesPage() {
          </button>
          <button 
            onClick={() => setActiveTab('certificates')}
-           className={`px-6 py-4 font-bold capitalize tracking-widest text-xs whitespace-nowrap transition-colors flex items-center gap-2 ${
+           className={`px-6 py-4 font-bold capitalize text-xs whitespace-nowrap transition-colors flex items-center gap-2 ${
              activeTab === 'certificates' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-400 hover:text-gray-900'
            }`}
          >
@@ -97,7 +97,7 @@ export default function MyCoursesPage() {
                <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-indigo-50 rounded-[2.5rem] border-2 border-dashed border-blue-200 flex flex-col items-center justify-center p-8 text-center">
                   <Trophy className="text-blue-300 mb-4" size={48} />
                   <h4 className="text-lg font-black text-blue-900 mb-2">No Certificates Yet</h4>
-                  <p className="text-xs font-bold text-blue-600/70 capitalize tracking-widest">Complete 100% of a course</p>
+                  <p className="text-xs font-bold text-blue-600/70 capitalize">Complete 100% of a course</p>
                </div>
             </div>
          )}
@@ -114,7 +114,7 @@ function EmptyState({ icon, title, desc, actionUrl, actionText, actionIcon }: an
          </div>
          <h4 className="text-2xl font-black text-gray-900 mb-3 capitalize tracking-tight">{title}</h4>
          <p className="text-gray-500 font-medium mb-8 max-w-md mx-auto leading-relaxed">{desc}</p>
-         <Link href={actionUrl} className="inline-flex items-center justify-center gap-3 h-14 px-8 bg-blue-600 text-white font-black rounded-2xl tracking-widest capitalize shadow-xl shadow-blue-100 hover:scale-105 active:scale-95 transition-all">
+         <Link href={actionUrl} className="inline-flex items-center justify-center gap-3 h-14 px-8 bg-blue-600 text-white font-black rounded-2xl capitalize shadow-xl shadow-blue-100 hover:scale-105 active:scale-95 transition-all">
             {actionIcon} {actionText}
          </Link>
       </div>

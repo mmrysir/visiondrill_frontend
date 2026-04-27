@@ -70,7 +70,7 @@ export default function CertificatesPage() {
                <div className="h-28 bg-gradient-to-br from-blue-600 via-indigo-600 to-indigo-800 p-8 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
                   <ShieldCheck size={48} className="text-white/20 absolute bottom-4 right-6 scale-150 rotate-12 group-hover:rotate-0 transition-transform duration-700" />
-                  <div className="flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 w-fit">
+                  <div className="flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold text-white border border-white/20 w-fit">
                     Verified ID: {cert.serial_number}
                   </div>
                </div>
@@ -87,14 +87,14 @@ export default function CertificatesPage() {
                   </div>
 
                   <div className="mt-auto space-y-4 pt-4 border-t border-gray-50">
-                     <div className="flex items-center justify-between text-[10px] font-black text-gray-400 tracking-widest uppercase">
+                     <div className="flex items-center justify-between text-xs font-medium text-gray-400">
                         <span>Platform Certified</span>
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
                      </div>
                      
                      <div className="flex gap-3">
                         <button 
-                          className="flex-1 flex items-center justify-center gap-2 py-3 bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-900 font-black rounded-2xl text-xs tracking-widest uppercase transition-all shadow-sm"
+                          className="flex-1 flex items-center justify-center gap-2 py-3 bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-900 font-black rounded-2xl text-xs transition-all shadow-sm"
                           onClick={() => window.open(cert.download_link, '_blank')}
                         >
                            <Download size={16} /> Download
@@ -123,7 +123,7 @@ export default function CertificatesPage() {
            <div className="pt-4">
               <button 
                 onClick={() => window.location.href = '/student/courses'}
-                className="px-10 py-4 bg-blue-600 text-white font-black rounded-2xl tracking-widest uppercase shadow-xl shadow-blue-200 hover:shadow-blue-300 transition-all active:scale-95"
+                className="px-10 py-4 bg-blue-600 text-white font-black rounded-2xl shadow-xl shadow-blue-200 hover:shadow-blue-300 transition-all active:scale-95"
               >
                  Resume Learning
               </button>

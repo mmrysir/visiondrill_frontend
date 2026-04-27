@@ -76,7 +76,7 @@ export default function InstructorCourses() {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-4">
         <div className="w-12 h-12 border-4 border-cyan-100 border-t-cyan-500 rounded-full animate-spin"></div>
-        <p className="text-xs font-black text-gray-400">Syncing library...</p>
+        <p className="text-xs font-medium text-gray-400">Syncing library...</p>
       </div>
     );
   }
@@ -87,14 +87,14 @@ export default function InstructorCourses() {
         <div className="flex flex-col lg:flex-row justify-between items-end gap-6">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 mb-4">
-                 <div className="px-3 py-1 rounded-full bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 text-[9px] font-black">
+                 <div className="px-3 py-1 rounded-full bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 text-xs font-black">
                     Content library
                  </div>
-                 <span className="text-gray-500 font-bold text-[10px]">• {courses.length} Modules</span>
+                 <span className="text-gray-500 font-bold text-xs">• {courses.length} Modules</span>
               </div>
-            <h1 className="text-3xl lg:text-4xl font-black text-gray-900 leading-[0.95] tracking-tight mb-3">
+            <h1 className="text-3xl lg:text-4xl font-black text-gray-900 leading-[0.95] tracking-tighter mb-3">
                Manage your <br />
-               <span className="bg-gradient-to-r from-cyan-600 to-teal-400 bg-clip-text text-transparent italic text-2xl lg:text-3xl">Instructional assets.</span>
+               <span className="bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent italic text-2xl lg:text-3xl">Instructional assets.</span>
             </h1>
             <p className="text-base text-gray-400 font-medium leading-relaxed max-w-lg mb-4">
                Build high-impact courses and track enrollment from your architect interface.
@@ -103,17 +103,17 @@ export default function InstructorCourses() {
           
           <button
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-3 px-8 py-4 bg-cyan-950 text-white font-black rounded-xl hover:bg-black transition-all shadow-xl shadow-cyan-100 text-[10px] active:scale-95 mb-4"
+            className="flex items-center gap-3 px-8 py-4 bg-blue-950 text-white font-semibold rounded-xl hover:bg-black transition-all shadow-xl shadow-blue-100 text-sm active:scale-95 mb-4"
           >
-            <Plus size={16} className="text-cyan-400" /> Create module
+            <Plus size={16} className="text-blue-400" /> Create module
           </button>
         </div>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <StatCard icon={BookOpen} label="Total assets" value={(stats?.total_courses ?? 0).toString()} badge="Curriculum" color="text-cyan-600" />
-        <StatCard icon={Users} label="Active students" value={(stats?.total_students ?? 0).toString()} badge="Engagement" color="text-teal-600" />
-        <StatCard icon={Globe} label="Live modules" value={(stats?.published_count ?? 0).toString()} badge="Marketplace" color="text-cyan-600" />
+        <StatCard icon={BookOpen} label="Total assets" value={(stats?.total_courses ?? 0).toString()} badge="Curriculum" color="text-blue-600" />
+        <StatCard icon={Users} label="Active students" value={(stats?.total_students ?? 0).toString()} badge="Engagement" color="text-blue-600" />
+        <StatCard icon={Globe} label="Live modules" value={(stats?.published_count ?? 0).toString()} badge="Marketplace" color="text-blue-600" />
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
@@ -152,7 +152,7 @@ export default function InstructorCourses() {
                   </h3>
                   <div className="flex items-center gap-3">
                      <Link href={`/instructor/courses/${course.id}/curriculum`} className="flex-grow">
-                        <button className="w-full h-14 bg-cyan-950 text-white font-black rounded-2xl text-[10px] hover:bg-black transition-all flex items-center justify-center gap-2">
+                        <button className="w-full h-14 bg-cyan-950 text-white font-black rounded-2xl text-xs hover:bg-black transition-all flex items-center justify-center gap-2">
                            <Layout size={16} /> Edit architect
                         </button>
                      </Link>
@@ -180,8 +180,8 @@ export default function InstructorCourses() {
                   onChange={e => setCreateForm({ ...createForm, course_title: e.target.value })}
                   className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-bold text-gray-900 outline-none focus:ring-8 focus:ring-cyan-50"
                />
-               <button type="submit" disabled={creating} className="w-full py-5 bg-cyan-950 text-white font-black rounded-xl text-xs hover:bg-black flex items-center justify-center gap-3 active:scale-95">
-                  {creating ? <Loader2 className="animate-spin" /> : <Sparkles size={18} />} Initiate production
+               <button type="submit" disabled={creating} className="w-full py-5 bg-blue-950 text-white font-semibold rounded-xl text-sm hover:bg-black flex items-center justify-center gap-3 active:scale-95">
+                  {creating ? <Loader2 className="animate-spin" /> : <Sparkles size={18} />} Create module
                </button>
             </form>
           </div>
@@ -197,11 +197,11 @@ function StatCard({ icon: Icon, label, value, badge, color }: any) {
        <div>
           <div className="flex items-center justify-between mb-4">
              <div className={`${color}`}><Icon size={18} /></div>
-             <span className={`text-[9px] font-black ${color}`}>{badge}</span>
+             <span className={`text-xs font-black ${color}`}>{badge}</span>
           </div>
           <div className="text-3xl font-black text-gray-900 tracking-tighter mb-0.5">{value}</div>
        </div>
-       <p className="text-[9px] font-black text-gray-400">{label}</p>
+       <p className="text-xs font-medium text-gray-400">{label}</p>
     </div>
   );
 }

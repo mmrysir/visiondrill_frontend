@@ -72,7 +72,7 @@ export default function InstructorStudents() {
     return (
       <div className="min-h-screen bg-[#FDFDFF] flex flex-col items-center justify-center space-y-4">
         <div className="w-12 h-12 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin"></div>
-        <p className="text-xs font-black text-gray-400">Syncing registry...</p>
+        <p className="text-xs font-medium text-gray-400">Syncing registry...</p>
       </div>
     );
   }
@@ -84,7 +84,7 @@ export default function InstructorStudents() {
         <div className="flex flex-col lg:flex-row justify-between items-end gap-10">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-6">
-               <div className="px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-600 text-[10px] font-black">
+               <div className="px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-600 text-xs font-black">
                   Student registry
                </div>
                <span className="text-gray-400 font-bold text-xs">• Monitoring {students.length} active enrollments</span>
@@ -103,7 +103,7 @@ export default function InstructorStudents() {
                 <Users size={24} />
              </div>
              <div>
-                <p className="text-[10px] font-black text-gray-400 mb-1">Total network</p>
+                <p className="text-xs font-medium text-gray-400 mb-1">Total network</p>
                 <p className="text-3xl font-black text-gray-900 tracking-tighter">{students.length}</p>
              </div>
           </div>
@@ -114,7 +114,7 @@ export default function InstructorStudents() {
         
         <div className="lg:col-span-3 space-y-4">
            <div className="flex items-center justify-between mb-4 px-2">
-              <h3 className="text-[10px] font-black text-gray-400">Filter by course</h3>
+              <h3 className="text-xs font-medium text-gray-400">Filter by course</h3>
               <Filter size={16} className="text-gray-300" />
            </div>
            
@@ -127,7 +127,7 @@ export default function InstructorStudents() {
                  >
                     <p className={`font-black text-sm truncate mb-1 ${selectedCourseId === course.id ? 'text-white' : 'text-gray-900 group-hover:text-blue-600 transition-colors'}`}>{course.course_title}</p>
                     <div className="flex items-center justify-between">
-                       <span className={`text-[9px] font-black ${selectedCourseId === course.id ? 'text-blue-100' : 'text-gray-400'}`}>
+                       <span className={`text-xs font-black ${selectedCourseId === course.id ? 'text-blue-100' : 'text-gray-400'}`}>
                           {course.enrollments_count} Students
                        </span>
                        {selectedCourseId === course.id && <Sparkles size={12} className="text-white opacity-40" />}
@@ -153,7 +153,7 @@ export default function InstructorStudents() {
                  </div>
                  <div className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
-                    <span className="text-[10px] font-black text-gray-400">{filteredStudents.length} Matching results</span>
+                    <span className="text-xs font-medium text-gray-400">{filteredStudents.length} Matching results</span>
                  </div>
               </div>
 
@@ -161,7 +161,7 @@ export default function InstructorStudents() {
                  {studentsLoading ? (
                     <div className="h-full flex flex-col items-center justify-center p-20">
                        <div className="w-12 h-12 border-4 border-blue-50 border-t-blue-600 rounded-full animate-spin mb-4"></div>
-                       <p className="text-[10px] font-black text-gray-300">Filtering records...</p>
+                       <p className="text-xs font-medium text-gray-300">Filtering records...</p>
                     </div>
                  ) : filteredStudents.length === 0 ? (
                     <div className="h-full flex flex-col items-center justify-center p-20 text-center">
@@ -182,7 +182,7 @@ export default function InstructorStudents() {
                                       <h5 className="text-sm font-black text-gray-900 leading-tight mb-1">{student.name}</h5>
                                       <div className="flex items-center gap-2">
                                          <Mail size={12} className="text-gray-300" />
-                                         <span className="text-[10px] font-bold text-gray-400 truncate max-w-[150px]">{student.email}</span>
+                                         <span className="text-xs font-bold text-gray-400 truncate max-w-[150px]">{student.email}</span>
                                       </div>
                                    </div>
                                 </div>
@@ -193,7 +193,7 @@ export default function InstructorStudents() {
 
                              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-50">
                                 <div>
-                                   <div className="flex items-center gap-2 text-[10px] font-black text-gray-300 mb-1">
+                                   <div className="flex items-center gap-2 text-xs font-medium text-gray-300 mb-1">
                                       <Calendar size={12} /> Joined
                                    </div>
                                    <p className="text-xs font-black text-gray-900">
@@ -201,7 +201,7 @@ export default function InstructorStudents() {
                                    </p>
                                 </div>
                                 <div className="text-right">
-                                   <div className="flex items-center justify-end gap-2 text-[10px] font-black text-gray-300 mb-1">
+                                   <div className="flex items-center justify-end gap-2 text-xs font-medium text-gray-300 mb-1">
                                       <Activity size={12} /> Progress
                                    </div>
                                    <div className="flex items-center justify-end gap-2 text-blue-600 font-black text-xs">
@@ -219,7 +219,7 @@ export default function InstructorStudents() {
               </div>
 
               <div className="p-6 border-t border-gray-50 bg-gray-50/50 flex justify-center items-center">
-                 <p className="text-[10px] font-black text-gray-300">VisionDrill student registry interface</p>
+                 <p className="text-xs font-medium text-gray-300">VisionDrill student registry interface</p>
               </div>
            </div>
         </div>

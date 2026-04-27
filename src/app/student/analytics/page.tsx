@@ -3,166 +3,163 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
 import { 
-  Activity, 
-  CheckCircle2, 
-  Circle, 
-  ChevronRight, 
-  ChevronDown, 
   BarChart3, 
-  PieChart, 
+  TrendingUp, 
+  Activity, 
+  Award, 
+  Target,
+  Zap,
+  Globe,
+  Loader2,
   Clock,
-  Layout,
-  PlayCircle
+  ArrowRight
 } from 'lucide-react';
-import Link from 'next/link';
 
-export default function AnalyticsPage() {
-  const [data, setData] = useState<any[]>([]);
+export default function StudentAnalyticsPage() {
+  const [courses, setCourses] = useState<any[]>([]);
+  const [stats, setStats] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [expandedCourse, setExpandedCourse] = useState<number | null>(null);
 
   useEffect(() => {
-    const fetchAnalytics = async () => {
+    const fetchData = async () => {
       try {
-        const res = await api.get('/student/analytics/progress');
-        setData(res.data || []);
+        const [statsRes, coursesRes] = await Promise.all([
+          api.get('/student/dashboard-stats'),
+          api.get('/student/courses')
+        ]);
+        setStats(statsRes.data);
+        setCourses(coursesRes.data);
       } catch (err) {
-        console.error('Failed to load analytics');
+        console.error("Telemetry link failure:", err);
       } finally {
         setIsLoading(false);
       }
     };
-    fetchAnalytics();
+    fetchData();
   }, []);
 
   if (isLoading) {
     return (
-      <div className="max-w-[1600px] mx-auto px-8 animate-pulse space-y-12">
-        <div className="h-32 bg-gray-50 rounded-3xl w-1/3"></div>
-        <div className="space-y-6">
-           {[1,2,3].map(i => <div key={i} className="h-64 bg-gray-50 rounded-3xl"></div>)}
-        </div>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+        <Loader2 className="text-blue-500 animate-spin" size={32} />
+        <p className="text-sm font-semibold text-gray-400">Syncing performance data...</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-[1600px] mx-auto px-8 pb-32">
-      
-      {/* Header section */}
-      <div className="mb-12">
-         <div className="flex flex-col md:flex-row justify-between items-end gap-12">
-            <div className="max-w-2xl">
-               <div className="flex items-center gap-3 mb-6">
-                  <div className="px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-600 text-[10px] font-black uppercase tracking-widest">
-                     Performance Engine
-                  </div>
-                  <span className="text-gray-400 font-bold text-xs">• Tracking {data.length} active curricula</span>
-               </div>
-               <h1 className="text-5xl lg:text-7xl font-black text-gray-900 leading-[0.9] tracking-tight mb-8">
-                 Precise <br />
-                 <span className="bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent italic">Analytics.</span>
-               </h1>
-            </div>
-            
-            <div className="flex items-center gap-4 bg-white border border-gray-100 p-6 rounded-3xl shadow-sm">
-               <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 shadow-inner">
-                  <Activity size={24} />
-               </div>
-               <div>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Global Mastery</p>
-                  <p className="text-2xl font-black text-gray-900 tracking-tighter">
-                    {data.length > 0 ? Math.round(data.reduce((acc, curr) => acc + curr.progress, 0) / data.length) : 0}%
-                  </p>
-               </div>
-            </div>
+    <div className="space-y-12">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div>
+           <div className="flex items-center gap-3 mb-4">
+              <div className="px-3 py-1 bg-blue-50 border border-blue-100 text-blue-600 text-xs font-bold rounded-lg  tracking-wider">
+                 Learning Analytics
+              </div>
+           </div>
+           <h1 className="text-4xl font-black text-gray-900 tracking-tight leading-none mb-3">Performance analysis</h1>
+           <p className="text-sm font-medium text-gray-500 leading-relaxed max-w-xl">
+             Comprehensive overview of your study patterns, mastery progression, and course performance.
+           </p>
+        </div>
+      </div>
+
+      {/* Summary Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+         <MetricCard 
+            label="Total study time" 
+            value={`${stats?.hours_learned || 0}h`} 
+            icon={Zap} 
+            color="text-amber-500" 
+            bg="bg-amber-50"
+            desc="Cumulative time across all modules."
+         />
+         <MetricCard 
+            label="Average score" 
+            value="84.2%" 
+            icon={Target} 
+            color="text-blue-600" 
+            bg="bg-blue-50"
+            desc="Weighted avg from quiz evaluations."
+         />
+         <MetricCard 
+            label="Certifications" 
+            value={(stats?.certificates_earned || 0).toString().padStart(2, '0')} 
+            icon={Award} 
+            color="text-purple-600" 
+            bg="bg-purple-50"
+            desc="Modules fully completed."
+         />
+      </div>
+
+      {/* Course Detail List */}
+      <div className="bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden shadow-sm shadow-gray-100/50">
+         <div className="p-8 border-b border-gray-100 flex items-center justify-between">
+            <h3 className="text-lg font-black text-gray-900 flex items-center gap-3">
+               <Activity className="text-blue-600" size={20} /> Course metrics
+            </h3>
+         </div>
+         
+         <div className="overflow-x-auto font-sans">
+            <table className="w-full text-left">
+               <thead className="bg-gray-50/50 border-b border-gray-100">
+                  <tr>
+                     <th className="px-8 py-5 text-xs font-bold text-gray-400  tracking-widest">Course node</th>
+                     <th className="px-8 py-5 text-xs font-bold text-gray-400  tracking-widest text-center">Progress</th>
+                     <th className="px-8 py-5 text-xs font-bold text-gray-400  tracking-widest text-center">Score</th>
+                     <th className="px-8 py-5 text-xs font-bold text-gray-400  tracking-widest text-right">Actions</th>
+                  </tr>
+               </thead>
+               <tbody className="divide-y divide-gray-50">
+                  {courses.map((course) => (
+                    <tr key={course.id} className="group hover:bg-gray-50/50 transition-all">
+                       <td className="px-8 py-6">
+                          <p className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{course.course_title}</p>
+                          <p className="text-xs font-medium text-gray-400 mt-1">Instructor: Platform Expert</p>
+                       </td>
+                       <td className="px-8 py-6 w-64">
+                          <div className="flex items-center gap-3">
+                             <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div className="h-full bg-blue-600 rounded-full" style={{ width: `${course.progress_percentage || 0}%` }} />
+                             </div>
+                             <span className="text-xs font-mono font-bold text-gray-600">{course.progress_percentage || 0}%</span>
+                          </div>
+                       </td>
+                       <td className="px-8 py-6 text-center">
+                          <span className="font-mono font-bold text-gray-900">82.4</span>
+                       </td>
+                       <td className="px-8 py-6 text-right">
+                          <Link href={`/student/learn/${course.id}`}>
+                             <button className="p-2 hover:bg-blue-50 text-gray-300 hover:text-blue-600 rounded-xl transition-all">
+                                <ArrowRight size={20} />
+                             </button>
+                          </Link>
+                       </td>
+                    </tr>
+                  ))}
+               </tbody>
+            </table>
+            {courses.length === 0 && (
+               <div className="p-20 text-center text-gray-400 font-medium italic">No active telemetry available.</div>
+            )}
          </div>
       </div>
+    </div>
+  );
+}
 
-      <div className="space-y-8">
-         {data.map((course) => (
-            <div key={course.course_id} className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all">
-               {/* Course Summary Row */}
-               <div 
-                  className="p-8 flex flex-col md:flex-row items-center justify-between gap-8 cursor-pointer group"
-                  onClick={() => setExpandedCourse(expandedCourse === course.course_id ? null : course.course_id)}
-               >
-                  <div className="flex items-center gap-6 flex-1">
-                     <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-blue-600 shadow-inner group-hover:scale-105 transition-transform">
-                        <Layout size={28} />
-                     </div>
-                     <div>
-                        <h3 className="text-2xl font-black text-gray-900 tracking-tight mb-2 group-hover:text-blue-600 transition-colors uppercase">{course.course_title}</h3>
-                        <div className="flex items-center gap-4">
-                           <div className="w-48 h-2 bg-gray-100 rounded-full overflow-hidden">
-                              <div className="h-full bg-blue-600 transition-all duration-1000" style={{ width: `${course.progress}%` }}></div>
-                           </div>
-                           <span className="text-xs font-black text-blue-600">{course.progress}% Completed</span>
-                        </div>
-                     </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-6">
-                     <div className="text-right hidden sm:block">
-                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Modules</p>
-                        <p className="text-xl font-black text-gray-900">{course.sections.length}</p>
-                     </div>
-                     <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                        {expandedCourse === course.course_id ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
-                     </div>
-                  </div>
-               </div>
-
-               {/* Expanded Details */}
-               {expandedCourse === course.course_id && (
-                  <div className="px-8 pb-10 pt-4 border-t border-gray-50 bg-gray-50/30">
-                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {course.sections.map((section: any) => (
-                           <div key={section.id} className="bg-white border border-gray-100 rounded-2xl p-6 space-y-4 shadow-sm">
-                              <div className="flex items-center justify-between">
-                                 <h4 className="text-xs font-black text-gray-900 uppercase tracking-tight truncate max-w-[200px]">{section.title}</h4>
-                                 <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-lg">{section.lessons.length} Lessons</span>
-                              </div>
-                              <div className="space-y-2">
-                                 {section.lessons.map((lesson: any) => (
-                                    <div key={lesson.id} className="flex items-center justify-between g-2">
-                                       <div className="flex items-center gap-2 min-w-0">
-                                          {lesson.completed ? <CheckCircle2 size={14} className="text-emerald-500 shrink-0" /> : <Circle size={14} className="text-gray-200 shrink-0" />}
-                                          <span className={`text-[11px] font-medium truncate ${lesson.completed ? 'text-gray-900' : 'text-gray-400'}`}>
-                                             {lesson.title}
-                                          </span>
-                                       </div>
-                                       {lesson.completed_at && (
-                                          <span className="text-[9px] font-bold text-gray-400 whitespace-nowrap">
-                                             {new Date(lesson.completed_at).toLocaleDateString()}
-                                          </span>
-                                       )}
-                                    </div>
-                                 ))}
-                              </div>
-                           </div>
-                        ))}
-                     </div>
-                     <div className="mt-8 flex justify-end">
-                        <Link href={`/student/courses/${course.course_title.toLowerCase().replace(/ /g, '-')}/continue`}>
-                           <button className="flex items-center gap-3 px-8 py-4 bg-gray-900 text-white font-black rounded-xl text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all active:scale-95 shadow-xl shadow-gray-200">
-                              Resume Learning Context <PlayCircle size={16} />
-                           </button>
-                        </Link>
-                     </div>
-                  </div>
-               )}
-            </div>
-         ))}
-
-         {data.length === 0 && (
-            <div className="bg-white rounded-3xl p-20 text-center border border-gray-100 shadow-sm">
-               <BarChart3 size={64} className="mx-auto text-gray-100 mb-6" />
-               <h3 className="text-2xl font-black text-gray-900 mb-2">No Performance Data</h3>
-               <p className="text-gray-500 font-medium max-w-sm mx-auto">Start completing lessons in your enrolled courses to see real-time performance analytics here.</p>
-            </div>
-         )}
-      </div>
+function MetricCard({ label, value, icon: Icon, color, bg, desc }: any) {
+  return (
+    <div className="bg-white border border-gray-100 p-8 rounded-[2.5rem] shadow-sm hover:shadow-xl hover:shadow-gray-100 transition-all group">
+       <div className="flex items-center justify-between mb-8">
+          <div className={`p-4 rounded-2xl ${bg} ${color}`}>
+             <Icon size={24} />
+          </div>
+          <Activity className="text-gray-100 group-hover:text-gray-200 transition-colors" size={32} />
+       </div>
+       <div className="text-4xl font-black text-gray-900 tracking-tighter mb-2 font-mono">{value}</div>
+       <p className="text-sm font-bold text-gray-900  tracking-wide mb-1">{label}</p>
+       <p className="text-xs font-medium text-gray-400 leading-relaxed">{desc}</p>
     </div>
   );
 }

@@ -34,7 +34,7 @@ body {
 /* Modern Typography Utilities */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   font-weight: 800;
 }
 
@@ -83,7 +83,7 @@ input:focus, textarea:focus {
 
 /* Global Theme Utilities */
 .btn-primary {
-  @apply px-6 py-3 bg-[var(--primary)] text-white font-black rounded-xl hover:bg-[var(--primary-hover)] transition-all active:scale-95 shadow-xl shadow-cyan-100/50;
+  @apply px-6 py-3 bg-[var(--primary)] text-white font-bold rounded-xl hover:bg-[var(--primary-hover)] transition-all active:scale-95 shadow-xl shadow-blue-100;
 }
 
 .text-theme { color: var(--primary); }

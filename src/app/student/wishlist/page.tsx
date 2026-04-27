@@ -2,95 +2,126 @@
 
 import React, { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
-import { Heart, Search, ArrowRight, BookOpen, Clock, Star } from 'lucide-react';
-import CourseCard from '@/components/CourseCard';
+import { 
+  Bookmark, 
+  Search, 
+  ArrowRight, 
+  Star, 
+  Clock, 
+  Trash2,
+  Loader2,
+  BookMarked
+} from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function WishlistPage() {
   const [courses, setCourses] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const fetchWishlist = async () => {
-      try {
-        const res = await api.get('/student/wishlist');
-        setCourses(res.data || []);
-      } catch (err) {
-        console.error('Failed to load wishlist');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchWishlist();
+    api.get('/student/wishlist')
+      .then(res => setCourses(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setIsLoading(false));
   }, []);
 
-  const filteredCourses = courses.filter(course => 
-    course.course_title?.toLowerCase().includes(searchQuery.toLowerCase())
+  if (isLoading) return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+      <Loader2 className="text-blue-600 animate-spin" size={32} />
+      <p className="text-sm font-bold text-gray-400">Loading saved assets...</p>
+    </div>
   );
 
   return (
-    <div className="max-w-[1600px] mx-auto px-8 pb-20">
-      
-      {/* Header section */}
-      <div className="mb-12">
-         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="max-w-2xl">
-               <div className="flex items-center gap-3 mb-6">
-                  <div className="px-4 py-1.5 rounded-full bg-pink-600/10 border border-pink-500/20 text-pink-600 text-[10px] font-black uppercase tracking-widest">
-                     Saved for Later
-                  </div>
-                  <span className="text-gray-400 font-bold text-xs">• {courses.length} courses in wishlist</span>
-               </div>
-               <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-[0.95] tracking-tight mb-6">
-                 Course <br />
-                 <span className="bg-gradient-to-r from-pink-600 to-rose-400 bg-clip-text text-transparent italic text-4xl lg:text-5xl">Wishlist & Ideas.</span>
-               </h1>
-            </div>
-            
-            <div className="relative">
-               <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300" size={18} />
-               <input 
-                  type="text" 
-                  placeholder="Filter your wishlist..."
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  className="w-full md:w-96 pl-14 pr-6 py-4 bg-white border border-gray-100 rounded-xl focus:border-pink-200 outline-none font-bold text-sm text-gray-900 transition-all shadow-sm"
-               />
-            </div>
-         </div>
+    <div className="space-y-12">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-gray-100 pb-10">
+        <div>
+           <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                <Bookmark size={20} />
+              </div>
+              <h1 className="text-4xl font-black text-gray-900 tracking-tight leading-none">Wishlist</h1>
+           </div>
+           <p className="text-sm font-medium text-gray-500 leading-relaxed max-w-xl">
+             Your curated collection of curriculum nodes. Ready for enrollment when you are.
+           </p>
+        </div>
+        <div className="bg-white border border-gray-100 p-4 rounded-2xl flex items-center gap-4">
+          <div className="text-right">
+             <p className="text-xl font-bold text-gray-900 leading-none">{courses.length}</p>
+             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Saved courses</p>
+          </div>
+        </div>
       </div>
 
-      {isLoading ? (
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[1, 2, 3].map(i => <div key={i} className="h-96 bg-gray-50 rounded-2xl animate-pulse border border-gray-100"></div>)}
-         </div>
-      ) : filteredCourses.length > 0 ? (
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {filteredCourses.map(course => (
-               <CourseCard key={course.id} course={course} />
-            ))}
-         </div>
-      ) : (
-         <div className="bg-white rounded-3xl p-20 text-center border border-gray-100 shadow-sm space-y-8 max-w-3xl mx-auto">
-            <div className="w-24 h-24 bg-pink-50 text-pink-500 rounded-2xl flex items-center justify-center mx-auto shadow-inner group">
-               <Heart size={48} className="group-hover:scale-110 transition-transform fill-pink-500" />
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {courses.map((course) => (
+          <div key={course.id} className="bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden hover:shadow-xl hover:shadow-gray-100 transition-all group flex flex-col h-full">
+             <div className="aspect-video bg-gray-100 relative overflow-hidden shrink-0">
+                <Image 
+                  src={course.image || '/course-placeholder.jpg'} 
+                  alt={course.course_title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-all duration-500"
+                />
+                <div className="absolute top-4 right-4 z-10">
+                   <button className="bg-white/90 backdrop-blur-md p-2 rounded-xl text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-lg shadow-black/5">
+                      <Trash2 size={16} />
+                   </button>
+                </div>
+             </div>
+
+             <div className="p-8 flex-1 flex flex-col justify-between">
+                <div>
+                   <div className="flex items-center gap-2 mb-4">
+                      <div className="flex text-amber-400">
+                         <Star size={12} fill="currentColor" />
+                         <Star size={12} fill="currentColor" />
+                         <Star size={12} fill="currentColor" />
+                         <Star size={12} fill="currentColor" />
+                         <Star size={12} fill="currentColor" />
+                      </div>
+                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">4.9 Mastery</span>
+                   </div>
+                   <h3 className="text-xl font-black text-gray-900 group-hover:text-blue-600 transition-colors mb-2 leading-tight">
+                      {course.course_title}
+                   </h3>
+                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
+                      By <span className="text-gray-900">{course.author?.first_name || 'Expert'}</span>
+                   </p>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-gray-50 flex items-center justify-between">
+                   <div className="flex flex-col">
+                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pricing</span>
+                      <span className="text-lg font-black text-gray-900 font-mono">KES {course.price || '0'}</span>
+                   </div>
+                   <Link href={`/courses/${course.slug}`}>
+                      <button className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl text-xs flex items-center gap-2 hover:bg-blue-700 transition-all shadow-xl shadow-blue-100">
+                         Enroll <ArrowRight size={14} />
+                      </button>
+                   </Link>
+                </div>
+             </div>
+          </div>
+        ))}
+
+        {courses.length === 0 && (
+          <div className="col-span-full py-24 text-center bg-transparent border-2 border-dashed border-gray-100 rounded-[3rem]">
+            <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-blue-600">
+              <BookMarked size={32} />
             </div>
-            <div className="space-y-4">
-               <h2 className="text-3xl font-black text-gray-900 tracking-tighter uppercase">Your wishlist is empty</h2>
-               <p className="text-gray-500 font-medium leading-relaxed max-w-md mx-auto">
-                  Find courses that spark your interest and save them here to plan your career growth.
-               </p>
-            </div>
-            <div className="pt-4">
-               <Link href="/courses">
-                  <button className="px-12 py-5 bg-gray-900 text-white font-black rounded-xl tracking-widest uppercase shadow-2xl shadow-gray-200 hover:bg-black transition-all active:scale-95 flex items-center gap-3 mx-auto">
-                     Explore Curriculum <ArrowRight size={18} />
-                  </button>
-               </Link>
-            </div>
-         </div>
-      )}
+            <h4 className="text-2xl font-black text-gray-900 mb-2">Wishlist empty</h4>
+            <p className="text-gray-500 font-medium mb-10 max-w-sm mx-auto leading-relaxed">You haven't bookmarked any courses yet. Browse the catalog to save interesting curricula.</p>
+            <Link href="/courses">
+              <button className="px-10 py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-xl shadow-gray-200 hover:scale-105 transition-all">Explore catalog</button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

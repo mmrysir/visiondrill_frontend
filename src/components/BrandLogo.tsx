@@ -21,24 +21,24 @@ export default function BrandLogo({
   const subTextClass = variant === 'dark' ? 'text-blue-600' : 'text-blue-300';
   
   const sizes = {
-    sm: 'w-7 h-7',
-    md: 'w-9 h-9',
-    lg: 'w-10 h-10',
+    sm: 'w-7 h-7 sm:w-8 sm:h-8',
+    md: 'w-9 h-9 sm:w-10 sm:h-10',
+    lg: 'w-10 h-10 sm:w-12 sm:h-12',
   };
 
   const Content = (
-    <div className={`flex items-center gap-2 group ${className}`}>
+    <div className={`flex items-center gap-2.5 group ${className}`}>
       <img 
         src="/images/visiondrill-logo-icon.png" 
         alt="Visiondrill" 
-        className={`${sizes[iconSize]} object-contain`} 
+        className={`${sizes[iconSize]} object-contain group-hover:scale-105 transition-transform duration-300`} 
       />
       <div className="flex flex-col">
-        <span className={`text-lg font-black tracking-tighter ${textClass} leading-none`}>
+        <span className={`text-xl font-black tracking-tighter ${textClass} leading-none`}>
           Visiondrill
         </span>
         {subtitle && (
-          <span className={`text-[8px] font-black ${subTextClass} uppercase tracking-widest mt-1`}>
+          <span className={`text-[10px] font-bold ${subTextClass} tracking-tight mt-0.5 opacity-80 group-hover:opacity-100 transition-opacity`}>
             {subtitle}
           </span>
         )}
@@ -47,7 +47,7 @@ export default function BrandLogo({
   );
 
   if (href) {
-    return <Link href={href}>{Content}</Link>;
+    return <Link href={href} className="inline-block transition-opacity active:opacity-75">{Content}</Link>;
   }
 
   return Content;
