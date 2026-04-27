@@ -40,7 +40,7 @@ export default function AdminDashboard() {
 
       <main className="max-w-7xl mx-auto px-8 py-12">
         <div className="mb-12">
-          <h1 className="text-4xl font-black text-gray-900 tracking-tight uppercase mb-2">Platform Overview</h1>
+          <h1 className="text-4xl font-black text-gray-900 tracking-tight  mb-2">Platform Overview</h1>
           <p className="text-gray-500 font-medium">Global control center for VisionDrill users, courses, and system health.</p>
         </div>
 
@@ -53,7 +53,7 @@ export default function AdminDashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
            <div className="lg:col-span-2 bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-              <h3 className="text-xl font-black text-gray-900 uppercase mb-8 flex items-center">
+              <h3 className="text-xl font-black text-gray-900  mb-8 flex items-center">
                  <TrendingUp className="mr-3 text-blue-600" size={20} /> System Activity
               </h3>
               <div className="h-64 bg-gray-50 rounded-2xl border border-dashed border-gray-200 flex items-center justify-center text-gray-400 font-bold">
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
            </div>
 
            <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-              <h3 className="text-xl font-black text-gray-900 uppercase mb-8 flex items-center">
+              <h3 className="text-xl font-black text-gray-900  mb-8 flex items-center">
                  <Settings className="mr-3 text-blue-600" size={20} /> Quick Links
               </h3>
               <div className="space-y-3">
@@ -86,7 +86,7 @@ function AdminStatCard({ icon, label, value, change, warning }: any) {
         <span className={`text-[10px] font-black px-2 py-1 rounded-full ${warning ? 'bg-orange-50 text-orange-600' : 'bg-green-50 text-green-600'}`}>{change}</span>
       </div>
       <div className="text-2xl font-black text-gray-900 tracking-tighter">{value}</div>
-      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">{label}</p>
+      <p className="text-gray-400 text-[10px] font-bold  tracking-widest">{label}</p>
     </div>
   );
 }
@@ -95,7 +95,7 @@ function AdminLink({ title, sub, href }: any) {
   return (
     <Link href={href} className="block p-4 rounded-2xl bg-gray-50 hover:bg-blue-50 hover:border-blue-100 border border-transparent transition-all group">
        <h4 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{title}</h4>
-       <p className="text-gray-400 text-[10px] uppercase font-bold tracking-wider">{sub}</p>
+       <p className="text-gray-400 text-[10px]  font-bold tracking-wider">{sub}</p>
     </Link>
   );
 }

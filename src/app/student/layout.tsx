@@ -39,9 +39,9 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
   ];
 
   return (
-    <div className="min-h-screen bg-[#FDFDFF] flex overflow-hidden">
+    <div className="h-screen bg-[#FDFDFF] flex overflow-hidden">
       {/* 1. Left Sidebar (Template Pattern) */}
-      <aside className="hidden lg:flex w-64 xl:w-72 bg-white border-r border-gray-100 flex-col shrink-0 overflow-y-auto custom-scrollbar">
+      <aside className="hidden lg:flex w-64 xl:w-72 bg-white border-r border-gray-100 flex-col shrink-0 sticky top-0 h-screen overflow-y-auto custom-scrollbar">
         <div className="p-8 pb-12">
           <BrandLogo subtitle="Student" />
         </div>

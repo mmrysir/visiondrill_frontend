@@ -75,18 +75,18 @@ export default function PaymentModal({ courseId, courseTitle, price, onClose, on
           {step === 'input' && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-black text-gray-900 uppercase">Enroll in Course</h3>
+                <h3 className="text-xl font-black text-gray-900 ">Enroll in Course</h3>
                 <p className="text-sm font-medium text-gray-400 mt-1 truncate">{courseTitle}</p>
               </div>
 
               <div className="bg-gray-50 rounded-xl p-4 flex justify-between items-center border border-gray-100">
-                 <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Total to Pay</span>
+                 <span className="text-xs font-black text-gray-400  tracking-widest">Total to Pay</span>
                  <span className="text-xl font-black text-blue-600">${(price / 100).toFixed(2)}</span>
               </div>
 
               <form onSubmit={handleInitiate} className="space-y-4">
                 <div className="space-y-1">
-                   <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">M-Pesa Phone Number</label>
+                   <label className="text-[10px] font-black text-gray-400  tracking-widest ml-2">M-Pesa Phone Number</label>
                    <div className="relative">
                       <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={18} />
                       <input 
@@ -100,7 +100,7 @@ export default function PaymentModal({ courseId, courseTitle, price, onClose, on
                    {error && <p className="text-[10px] font-bold text-red-500 mt-2 ml-2 flex items-center gap-1"><AlertCircle size={12} /> {error}</p>}
                 </div>
 
-                <Button type="submit" className="w-full h-14 bg-green-600 hover:bg-green-700 text-white rounded-xl font-black uppercase tracking-widest text-xs shadow-xl shadow-green-100">
+                <Button type="submit" className="w-full h-14 bg-green-600 hover:bg-green-700 text-white rounded-xl font-black  tracking-widest text-xs shadow-xl shadow-green-100">
                    Pay with M-Pesa
                 </Button>
                 
@@ -119,7 +119,7 @@ export default function PaymentModal({ courseId, courseTitle, price, onClose, on
                  <Loader2 size={80} className="text-green-600 animate-spin relative z-10" />
               </div>
               <div>
-                <h3 className="text-xl font-black text-gray-900 uppercase">Awaiting Payment</h3>
+                <h3 className="text-xl font-black text-gray-900 ">Awaiting Payment</h3>
                 <p className="text-sm font-medium text-gray-400 mt-2">Please check your phone and enter your M-Pesa PIN to complete the enrollment.</p>
               </div>
               <Button onClick={handleVerify} className="w-full h-14 bg-gray-900 hover:bg-black text-white">I have paid</Button>
@@ -132,8 +132,8 @@ export default function PaymentModal({ courseId, courseTitle, price, onClose, on
                   <CheckCircle2 size={64} />
                </div>
                <div>
-                <h3 className="text-xl font-black text-gray-900 uppercase tracking-tight">Payment Successful!</h3>
-                <p className="text-sm font-medium text-gray-400 mt-2 uppercase tracking-widest">Welcome to the course</p>
+                <h3 className="text-xl font-black text-gray-900  tracking-tight">Payment Successful!</h3>
+                <p className="text-sm font-medium text-gray-400 mt-2  tracking-widest">Welcome to the course</p>
                </div>
                <p className="text-xs text-gray-400">Redirecting you to the classroom...</p>
             </div>
@@ -145,7 +145,7 @@ export default function PaymentModal({ courseId, courseTitle, price, onClose, on
                   <AlertCircle size={64} />
                </div>
                <div>
-                <h3 className="text-xl font-black text-gray-900 uppercase">Payment Failed</h3>
+                <h3 className="text-xl font-black text-gray-900 ">Payment Failed</h3>
                 <p className="text-sm font-medium text-red-400 mt-2">{error}</p>
                </div>
                <Button onClick={() => setStep('input')} className="w-full h-14 border border-gray-100 bg-white text-gray-900">Try Again</Button>

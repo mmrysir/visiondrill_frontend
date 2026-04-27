@@ -51,7 +51,7 @@ export default function WishlistPage() {
         <div className="bg-white border border-gray-100 p-4 rounded-2xl flex items-center gap-4">
           <div className="text-right">
              <p className="text-xl font-bold text-gray-900 leading-none">{courses.length}</p>
-             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Saved courses</p>
+             <p className="text-[10px] font-bold text-gray-400  tracking-widest mt-1">Saved courses</p>
           </div>
         </div>
       </div>
@@ -84,20 +84,20 @@ export default function WishlistPage() {
                          <Star size={12} fill="currentColor" />
                          <Star size={12} fill="currentColor" />
                       </div>
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">4.9 Mastery</span>
+                      <span className="text-[10px] font-bold text-gray-400  tracking-widest">4.9 Mastery</span>
                    </div>
                    <h3 className="text-xl font-black text-gray-900 group-hover:text-blue-600 transition-colors mb-2 leading-tight">
                       {course.course_title}
                    </h3>
-                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
+                   <p className="text-xs font-bold text-gray-400  tracking-widest flex items-center gap-1">
                       By <span className="text-gray-900">{course.author?.first_name || 'Expert'}</span>
                    </p>
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-gray-50 flex items-center justify-between">
                    <div className="flex flex-col">
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pricing</span>
-                      <span className="text-lg font-black text-gray-900 font-mono">KES {course.price || '0'}</span>
+                      <span className="text-[10px] font-bold text-gray-400  tracking-widest">Pricing</span>
+                      <span className="text-lg font-black text-gray-900 font-sans">KES {course.price || '0'}</span>
                    </div>
                    <Link href={`/courses/${course.slug}`}>
                       <button className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl text-xs flex items-center gap-2 hover:bg-blue-700 transition-all shadow-xl shadow-blue-100">

@@ -38,7 +38,7 @@ export default function CohortsPage() {
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8">
         <div className="max-w-2xl">
            <div className="flex items-center gap-3 mb-4">
-              <div className="px-3 py-1 bg-purple-50 border border-purple-100 text-purple-600 text-[10px] font-black uppercase tracking-[0.2em] rounded">
+              <div className="px-3 py-1 bg-purple-50 border border-purple-100 text-purple-600 text-[10px] font-black  tracking-[0.2em] rounded">
                  Social Learning
               </div>
            </div>
@@ -53,7 +53,7 @@ export default function CohortsPage() {
            </div>
            <div>
               <p className="text-xl font-bold text-gray-900 leading-none">{cohorts.length}</p>
-              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Total groups</p>
+              <p className="text-[10px] font-bold text-gray-400  tracking-widest mt-1">Total groups</p>
            </div>
         </div>
       </div>
@@ -81,21 +81,21 @@ export default function CohortsPage() {
 
                 <div className="mb-8">
                    <h3 className="text-2xl font-black text-gray-900 group-hover:text-blue-600 transition-colors mb-2">{cohort.group?.name || 'Class Alpha'}</h3>
-                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                   <p className="text-xs font-bold text-gray-400  tracking-widest flex items-center gap-2">
                       Project: <span className="text-gray-900">{cohort.course_title}</span>
                    </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 mb-10">
                    <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100/50">
-                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Status</p>
+                      <p className="text-[10px] font-bold text-gray-400  tracking-widest mb-1">Status</p>
                       <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm">
                          <ShieldCheck size={14} /> Active
                       </div>
                    </div>
                    <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100/50">
-                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Session ID</p>
-                      <p className="text-blue-600 font-bold text-sm font-mono truncate">#VD-942{cohort.course_id}</p>
+                      <p className="text-[10px] font-bold text-gray-400  tracking-widest mb-1">Session ID</p>
+                      <p className="text-blue-600 font-bold text-sm font-sans truncate">#VD-942{cohort.course_id}</p>
                    </div>
                 </div>
              </div>
@@ -139,10 +139,10 @@ export default function CohortsPage() {
                </p>
             </div>
             <div className="flex gap-4">
-               <button className="px-8 py-4 bg-white text-blue-900 font-black rounded-2xl hover:scale-105 transition-all shadow-xl shadow-white/20 text-xs uppercase tracking-widest">
+               <button className="px-8 py-4 bg-white text-blue-900 font-black rounded-2xl hover:scale-105 transition-all shadow-xl shadow-white/20 text-xs  tracking-widest">
                   Join Discord
                </button>
-               <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black rounded-2xl hover:bg-white/20 transition-all text-xs uppercase tracking-widest">
+               <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black rounded-2xl hover:bg-white/20 transition-all text-xs  tracking-widest">
                   Resources
                </button>
             </div>

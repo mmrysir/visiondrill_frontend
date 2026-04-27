@@ -122,11 +122,11 @@ export default function StudentAnalyticsPage() {
                              <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
                                 <div className="h-full bg-blue-600 rounded-full" style={{ width: `${course.progress_percentage || 0}%` }} />
                              </div>
-                             <span className="text-xs font-mono font-bold text-gray-600">{course.progress_percentage || 0}%</span>
+                             <span className="text-xs font-sans font-bold text-gray-600">{course.progress_percentage || 0}%</span>
                           </div>
                        </td>
                        <td className="px-8 py-6 text-center">
-                          <span className="font-mono font-bold text-gray-900">82.4</span>
+                          <span className="font-sans font-bold text-gray-900">82.4</span>
                        </td>
                        <td className="px-8 py-6 text-right">
                           <Link href={`/student/learn/${course.id}`}>
@@ -157,7 +157,7 @@ function MetricCard({ label, value, icon: Icon, color, bg, desc }: any) {
           </div>
           <Activity className="text-gray-100 group-hover:text-gray-200 transition-colors" size={32} />
        </div>
-       <div className="text-4xl font-black text-gray-900 tracking-tighter mb-2 font-mono">{value}</div>
+       <div className="text-4xl font-black text-gray-900 tracking-tighter mb-2 font-sans">{value}</div>
        <p className="text-sm font-bold text-gray-900  tracking-wide mb-1">{label}</p>
        <p className="text-xs font-medium text-gray-400 leading-relaxed">{desc}</p>
     </div>

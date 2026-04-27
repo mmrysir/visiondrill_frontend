@@ -46,12 +46,12 @@ export default function BusinessOverview() {
     <div className="max-w-[1600px] mx-auto px-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-12 flex items-center justify-between">
         <div>
-           <h1 className="text-5xl font-black text-gray-900 uppercase tracking-tighter mb-4">Workforce Analytics</h1>
+           <h1 className="text-5xl font-black text-gray-900  tracking-tighter mb-4">Workforce Analytics</h1>
            <p className="text-gray-500 font-medium italic">Aggregate training performance and compliance metrics across your organization.</p>
         </div>
         <div className="hidden lg:flex items-center gap-4 bg-purple-50 px-6 py-3 rounded-2xl border border-purple-100">
            <ShieldCheck className="text-purple-600" size={18} />
-           <span className="text-[10px] font-black uppercase tracking-widest text-purple-900">Intelligence Active</span>
+           <span className="text-[10px] font-black  tracking-widest text-purple-900">Intelligence Active</span>
         </div>
       </div>
 
@@ -92,29 +92,29 @@ export default function BusinessOverview() {
             <div className="relative z-10">
                <div className="flex items-center justify-between mb-12">
                   <div>
-                     <h3 className="font-black text-gray-900 uppercase tracking-tight text-xl mb-2 flex items-center gap-3">
+                     <h3 className="font-black text-gray-900  tracking-tight text-xl mb-2 flex items-center gap-3">
                         <BarChart3 className="text-purple-600" size={24} /> Training Volume
                      </h3>
-                     <p className="text-xs text-gray-500 font-bold uppercase tracking-widest leading-none">Weekly completion trends</p>
+                     <p className="text-xs text-gray-500 font-bold  tracking-widest leading-none">Weekly completion trends</p>
                   </div>
                   <div className="flex items-center gap-4">
-                     <div className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400">
+                     <div className="flex items-center gap-2 text-[10px] font-black  text-gray-400">
                         <div className="w-2 h-2 bg-purple-600 rounded-full"></div> Completion
                      </div>
-                     <div className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400">
+                     <div className="flex items-center gap-2 text-[10px] font-black  text-gray-400">
                         <div className="w-2 h-2 bg-purple-200 rounded-full"></div> Enrollment
                      </div>
                   </div>
                </div>
                <div className="h-[350px] w-full bg-white/50 backdrop-blur-md rounded-[2.5rem] flex items-center justify-center border-2 border-dashed border-purple-200 group-hover:border-purple-400 transition-all">
-                  <p className="text-[10px] font-black text-purple-400 uppercase tracking-[0.3em] animate-pulse">Rendering Strategic Insights...</p>
+                  <p className="text-[10px] font-black text-purple-400  tracking-[0.3em] animate-pulse">Rendering Strategic Insights...</p>
                </div>
             </div>
          </div>
 
          {/* Activity Log */}
          <div className="lg:col-span-1 bg-white border border-gray-100 rounded-[3.5rem] p-12 shadow-sm">
-            <h3 className="font-black text-gray-900 uppercase tracking-tight text-lg mb-10 flex items-center gap-3">
+            <h3 className="font-black text-gray-900  tracking-tight text-lg mb-10 flex items-center gap-3">
                <Clock className="text-blue-600" size={20} /> Operational Log
             </h3>
             <div className="space-y-8">
@@ -127,12 +127,12 @@ export default function BusinessOverview() {
                         <p className="text-sm font-bold text-gray-900 leading-snug">
                            Employee <span className="text-purple-600">ID #{100 + i * 23}</span> finished "Enterprise Cyber-Shield"
                         </p>
-                        <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-2">{i * 2}h ago</p>
+                        <p className="text-[10px] text-gray-400 font-black  tracking-widest mt-2">{i * 2}h ago</p>
                      </div>
                   </div>
                ))}
             </div>
-            <button className="w-full mt-12 py-5 bg-gray-50 hover:bg-purple-600 hover:text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all">
+            <button className="w-full mt-12 py-5 bg-gray-50 hover:bg-purple-600 hover:text-white rounded-2xl text-[10px] font-black  tracking-[0.2em] transition-all">
                View Full Audit
             </button>
          </div>
@@ -151,11 +151,11 @@ function StatCard({ label, value, icon, trend, color, bg, isProgress }: any) {
         <div className={`${bg} ${color} w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm`}>
           {icon}
         </div>
-        <div className="flex items-center gap-1 text-[10px] font-black text-emerald-500 uppercase tracking-widest px-3 py-1 bg-emerald-50 rounded-full">
+        <div className="flex items-center gap-1 text-[10px] font-black text-emerald-500  tracking-widest px-3 py-1 bg-emerald-50 rounded-full">
            <TrendingUp size={14} /> {trend}
         </div>
       </div>
-      <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 italic">{label}</p>
+      <p className="text-[10px] font-black text-gray-400  tracking-widest mb-2 italic">{label}</p>
       <h4 className="text-5xl font-black text-gray-900 tracking-tighter mb-6">{value}</h4>
       {isProgress && (
          <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden shadow-inner">

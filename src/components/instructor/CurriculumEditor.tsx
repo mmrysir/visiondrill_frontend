@@ -84,7 +84,7 @@ const CurriculumEditor: React.FC<CurriculumEditorProps> = ({ courseId, initialSe
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center mb-8">
-        <h3 className="text-2xl font-black text-gray-900 tracking-tight uppercase">Course Curriculum</h3>
+        <h3 className="text-2xl font-black text-gray-900 tracking-tight ">Course Curriculum</h3>
         <Button onClick={handleAddSection} className="flex items-center">
           <Plus size={18} className="mr-2" /> Add Section
         </Button>
@@ -231,7 +231,7 @@ const SortableSectionItem = ({ section, courseId, onDelete }: { section: Section
             </div>
           ) : (
             <div className="flex items-center group">
-              <span className="font-black text-gray-900 tracking-tight uppercase mr-3">{title}</span>
+              <span className="font-black text-gray-900 tracking-tight  mr-3">{title}</span>
               <button onPointerDown={() => setIsEditing(true)} className="opacity-0 group-hover:opacity-100 transition-opacity p-1 text-gray-400 hover:text-blue-600">
                 <Edit3 size={14} />
               </button>
@@ -275,19 +275,19 @@ const SortableSectionItem = ({ section, courseId, onDelete }: { section: Section
             {!isAdding ? (
               <button 
                 onClick={() => setIsAdding(true)}
-                className="w-full h-12 border-2 border-dashed border-gray-100 rounded-xl flex items-center justify-center text-gray-400 font-bold text-xs uppercase tracking-widest hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50/50 transition-all gap-2"
+                className="w-full h-12 border-2 border-dashed border-gray-100 rounded-xl flex items-center justify-center text-gray-400 font-bold text-xs  tracking-widest hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50/50 transition-all gap-2"
               >
                 <Plus size={16} /> New Lesson
               </button>
             ) : (
               <div className="flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
-                 <button onClick={() => { handleAddLesson('video'); setIsAdding(false); }} className="flex-1 h-12 bg-blue-50 text-blue-600 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 border border-blue-100 hover:bg-blue-600 hover:text-white transition-all">
+                 <button onClick={() => { handleAddLesson('video'); setIsAdding(false); }} className="flex-1 h-12 bg-blue-50 text-blue-600 rounded-xl font-black text-[10px]  tracking-widest flex items-center justify-center gap-2 border border-blue-100 hover:bg-blue-600 hover:text-white transition-all">
                     <Video size={14} /> Video
                  </button>
-                 <button onClick={() => { handleAddLesson('text'); setIsAdding(false); }} className="flex-1 h-12 bg-purple-50 text-purple-600 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 border border-purple-100 hover:bg-purple-600 hover:text-white transition-all">
+                 <button onClick={() => { handleAddLesson('text'); setIsAdding(false); }} className="flex-1 h-12 bg-purple-50 text-purple-600 rounded-xl font-black text-[10px]  tracking-widest flex items-center justify-center gap-2 border border-purple-100 hover:bg-purple-600 hover:text-white transition-all">
                     <FileText size={14} /> Text
                  </button>
-                 <button onClick={() => { handleAddLesson('quiz'); setIsAdding(false); }} className="flex-1 h-12 bg-orange-50 text-orange-600 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 border border-orange-100 hover:bg-orange-600 hover:text-white transition-all">
+                 <button onClick={() => { handleAddLesson('quiz'); setIsAdding(false); }} className="flex-1 h-12 bg-orange-50 text-orange-600 rounded-xl font-black text-[10px]  tracking-widest flex items-center justify-center gap-2 border border-orange-100 hover:bg-orange-600 hover:text-white transition-all">
                     <HelpCircle size={14} /> Quiz
                  </button>
                  <button onClick={() => setIsAdding(false)} className="w-12 h-12 bg-gray-50 text-gray-400 rounded-xl flex items-center justify-center hover:bg-gray-100 transition-all">
@@ -389,7 +389,7 @@ const SortableLessonItem = ({ lesson, courseId, onDelete }: { lesson: Lesson, co
              <div className="flex items-center gap-2">
                 <span className="text-sm font-bold text-gray-700 group-hover:text-gray-900 transition-colors cursor-pointer" onDoubleClick={() => setIsEditing(true)}>{title}</span>
                {lesson.lesson_type === 'quiz' && (
-                  <span className="text-[10px] font-black bg-orange-50 text-orange-600 px-2 py-0.5 rounded uppercase tracking-widest">Quiz Attached</span>
+                  <span className="text-[10px] font-black bg-orange-50 text-orange-600 px-2 py-0.5 rounded  tracking-widest">Quiz Attached</span>
                )}
              </div>
           )}

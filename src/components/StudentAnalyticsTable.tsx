@@ -51,10 +51,10 @@ export default function StudentAnalyticsTable({ data }: { data: AnalyticsRow[] }
       {/* Table Header / Filter Bar */}
       <div className="p-4 border-b border-white/5 bg-white/[0.02] flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-white flex items-center gap-2">
+          <h3 className="text-xs font-bold  tracking-widest text-white flex items-center gap-2">
             <Target className="text-blue-500" size={14} /> Node Performance Engine
           </h3>
-          <span className="hidden md:inline px-2 py-1 bg-blue-600/10 text-blue-500 rounded font-mono text-[9px] uppercase">
+          <span className="hidden md:inline px-2 py-1 bg-blue-600/10 text-blue-500 rounded font-sans text-[9px] ">
             {filteredData.length} Indexed Nodes
           </span>
         </div>
@@ -66,7 +66,7 @@ export default function StudentAnalyticsTable({ data }: { data: AnalyticsRow[] }
             placeholder="Search node id..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-black/20 border border-white/5 rounded-lg pl-9 pr-4 py-2 text-xs font-mono text-white outline-none focus:border-blue-500/50 transition-all w-full md:w-64"
+            className="bg-black/20 border border-white/5 rounded-lg pl-9 pr-4 py-2 text-xs font-sans text-white outline-none focus:border-blue-500/50 transition-all w-full md:w-64"
           />
         </div>
       </div>
@@ -107,7 +107,7 @@ export default function StudentAnalyticsTable({ data }: { data: AnalyticsRow[] }
                 </td>
                 <td className="p-4 py-5">
                   <div className="flex flex-col gap-1.5 w-32">
-                    <div className="flex justify-between text-[10px] font-mono text-gray-500 uppercase">
+                    <div className="flex justify-between text-[10px] font-sans text-gray-500 ">
                       <span>Sync</span>
                       <span>{row.completion}%</span>
                     </div>
@@ -116,16 +116,16 @@ export default function StudentAnalyticsTable({ data }: { data: AnalyticsRow[] }
                     </div>
                   </div>
                 </td>
-                <td className="p-4 py-5 font-mono text-sm">
+                <td className="p-4 py-5 font-sans text-sm">
                   <span className={`${row.avg_score >= 80 ? 'text-emerald-400' : 'text-orange-400'}`}>
                     {row.avg_score.toFixed(1)}%
                   </span>
                 </td>
-                <td className="p-4 py-5 font-mono text-xs text-gray-500 flex items-center gap-2">
+                <td className="p-4 py-5 font-sans text-xs text-gray-500 flex items-center gap-2">
                   <Clock size={12} className="opacity-40" /> {row.time_invested}
                 </td>
                 <td className="p-4 py-5">
-                  <span className={`px-2 py-1 rounded text-[9px] font-mono font-black border uppercase tracking-widest ${
+                  <span className={`px-2 py-1 rounded text-[9px] font-sans font-black border  tracking-widest ${
                     row.status === 'ACTIVE' 
                       ? 'bg-blue-600/10 text-blue-500 border-blue-500/20' 
                       : 'bg-white/5 text-gray-500 border-white/10'
@@ -136,11 +136,11 @@ export default function StudentAnalyticsTable({ data }: { data: AnalyticsRow[] }
                 <td className="p-4 py-5">
                   <div className="flex items-center gap-1.5">
                     {row.pinn_status ? (
-                      <div className="flex items-center gap-1 text-emerald-500 text-[10px] font-mono uppercase">
+                      <div className="flex items-center gap-1 text-emerald-500 text-[10px] font-sans ">
                         <CheckCircle2 size={12} /> Encoded
                       </div>
                     ) : (
-                      <div className="flex items-center gap-1 text-gray-600 text-[10px] font-mono uppercase">
+                      <div className="flex items-center gap-1 text-gray-600 text-[10px] font-sans ">
                         <TrendingUp size={12} className="animate-pulse" /> Pending
                       </div>
                     )}
@@ -155,14 +155,14 @@ export default function StudentAnalyticsTable({ data }: { data: AnalyticsRow[] }
       {/* Footer / Telemetry */}
       <div className="p-4 flex items-center justify-between border-t border-white/5 bg-white/[0.01]">
          <div className="flex gap-4">
-            <span className="text-[9px] font-mono text-gray-600 uppercase flex items-center gap-1.5">
+            <span className="text-[9px] font-sans text-gray-600  flex items-center gap-1.5">
                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> API: Latency 14ms
             </span>
-            <span className="text-[9px] font-mono text-gray-600 uppercase flex items-center gap-1.5">
+            <span className="text-[9px] font-sans text-gray-600  flex items-center gap-1.5">
                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> Buffer: Optimal
             </span>
          </div>
-         <button className="text-[9px] font-mono text-gray-500 hover:text-white uppercase transition-colors">
+         <button className="text-[9px] font-sans text-gray-500 hover:text-white  transition-colors">
             Protocol Documentation
          </button>
       </div>
@@ -174,7 +174,7 @@ function HeaderCell({ label, sortable, active, order, onClick }: any) {
   return (
     <th 
       onClick={sortable ? onClick : undefined}
-      className={`p-4 text-[10px] font-mono font-black text-gray-500 uppercase tracking-widest ${sortable ? 'cursor-pointer hover:text-white transition-colors' : ''}`}
+      className={`p-4 text-[10px] font-sans font-black text-gray-500  tracking-widest ${sortable ? 'cursor-pointer hover:text-white transition-colors' : ''}`}
     >
       <div className="flex items-center gap-2">
         {label}

@@ -59,7 +59,7 @@ export default function BusinessLayout({
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="hidden sm:flex items-center gap-2 text-xs font-black text-gray-400 uppercase tracking-widest">
+            <div className="hidden sm:flex items-center gap-2 text-xs font-black text-gray-400  tracking-widest">
                <Building2 size={14} className="text-purple-600" /> B2B Portal
             </div>
             
@@ -69,7 +69,7 @@ export default function BusinessLayout({
                <Link href="/business/settings" className="flex items-center gap-3">
                   <div className="text-right hidden sm:block">
                      <p className="text-xs font-black text-gray-900 leading-none">{user?.first_name || 'Admin'}</p>
-                     <p className="text-[10px] font-bold text-gray-400 mt-1 uppercase">Manager</p>
+                     <p className="text-[10px] font-bold text-gray-400 mt-1 ">Manager</p>
                   </div>
                   <div className="w-10 h-10 rounded-2xl bg-purple-600 flex items-center justify-center text-white font-black text-sm shadow-xl shadow-purple-100 group-hover:scale-110 transition-all">
                      {user?.first_name?.[0] || 'M'}
@@ -92,7 +92,7 @@ export default function BusinessLayout({
 
 function NavLink({ href, icon, label }: any) {
   return (
-    <Link href={href} className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest text-gray-500 hover:text-purple-600 hover:bg-white hover:shadow-sm transition-all">
+    <Link href={href} className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black  tracking-widest text-gray-500 hover:text-purple-600 hover:bg-white hover:shadow-sm transition-all">
        {icon} {label}
     </Link>
   );

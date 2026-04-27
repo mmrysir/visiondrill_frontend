@@ -74,9 +74,9 @@ export default function AIAssistantSidebar({ lessonId, courseId }: AIAssistantSi
                  <Bot className="text-white" size={20} />
               </div>
               <div>
-                 <h3 className="font-black text-[12px] uppercase tracking-[0.2em] leading-none mb-2">Neural Link</h3>
+                 <h3 className="font-black text-[12px]  tracking-[0.2em] leading-none mb-2">Neural Link</h3>
                  <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest px-2 py-0.5 bg-blue-400/10 rounded-md border border-blue-400/20">Active v2.4</span>
+                    <span className="text-[10px] font-black text-blue-400  tracking-widest px-2 py-0.5 bg-blue-400/10 rounded-md border border-blue-400/20">Active v2.4</span>
                  </div>
               </div>
            </div>
@@ -91,7 +91,7 @@ export default function AIAssistantSidebar({ lessonId, courseId }: AIAssistantSi
         {messages.map((msg, i) => (
           <div key={i} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} group animate-in fade-in slide-in-from-bottom-2`}>
              <div className="flex items-center gap-2 mb-2 px-2">
-                <span className="text-[9px] font-black uppercase tracking-widest text-white/30">{msg.role === 'user' ? 'Me' : 'Vision AI'}</span>
+                <span className="text-[9px] font-black  tracking-widest text-white/30">{msg.role === 'user' ? 'Me' : 'Vision AI'}</span>
              </div>
              <div className={`p-6 rounded-[2rem] text-[13px] font-medium leading-relaxed max-w-[90%] shadow-2xl ${msg.role === 'user' ? 'bg-blue-600 text-white rounded-tr-none' : 'bg-white/5 text-gray-200 border border-white/5 rounded-tl-none'}`}>
                 {msg.content}
@@ -117,7 +117,7 @@ export default function AIAssistantSidebar({ lessonId, courseId }: AIAssistantSi
               <button 
                 key={tag} 
                 onClick={() => handleSend(tag)}
-                className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black uppercase tracking-widest text-white/40 hover:bg-white/10 hover:text-blue-400 hover:border-blue-400/30 transition-all active:scale-95"
+                className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black  tracking-widest text-white/40 hover:bg-white/10 hover:text-blue-400 hover:border-blue-400/30 transition-all active:scale-95"
               >
                 {tag}
               </button>
@@ -144,7 +144,7 @@ export default function AIAssistantSidebar({ lessonId, courseId }: AIAssistantSi
              </button>
           </div>
         </form>
-        <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/10 text-center mt-6">Secure Neural Encryption Active</p>
+        <p className="text-[9px] font-black  tracking-[0.2em] text-white/10 text-center mt-6">Secure Neural Encryption Active</p>
       </div>
     </div>
   );

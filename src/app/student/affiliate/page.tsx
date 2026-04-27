@@ -89,7 +89,7 @@ export default function AffiliatePage() {
                     <input 
                       readOnly 
                       value={`${window.location.origin}/register?ref=${stats?.affiliate_tag || ''}`}
-                      className="w-full bg-gray-50 border border-gray-100 rounded-2xl pl-4 pr-12 py-4 text-sm font-mono text-gray-600"
+                      className="w-full bg-gray-50 border border-gray-100 rounded-2xl pl-4 pr-12 py-4 text-sm font-sans text-gray-600"
                     />
                     <button 
                       onClick={copyRefLink}
@@ -135,7 +135,7 @@ export default function AffiliatePage() {
                             <td className="px-8 py-5 text-center">
                                <span className="px-2 py-1 bg-emerald-50 text-emerald-600 rounded text-[10px] font-black  tracking-widest border border-emerald-100">Verified</span>
                             </td>
-                            <td className="px-8 py-5 text-right font-mono text-xs text-gray-400">
+                            <td className="px-8 py-5 text-right font-sans text-xs text-gray-400">
                                {new Date(ref.created_at).toLocaleDateString('en-GB')}
                             </td>
                          </tr>
@@ -168,7 +168,7 @@ function FinanceCard({ label, value, icon: Icon, color, bg, action }: any) {
        <div className={`${bg} ${color} w-14 h-14 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform`}>
           <Icon size={28} />
        </div>
-       <div className="text-3xl font-black text-gray-900 tracking-tighter mb-1 font-mono">{value}</div>
+       <div className="text-3xl font-black text-gray-900 tracking-tighter mb-1 font-sans">{value}</div>
        <p className="text-xs font-bold text-gray-400  tracking-widest">{label}</p>
     </div>
   );

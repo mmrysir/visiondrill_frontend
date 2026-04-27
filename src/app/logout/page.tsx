@@ -27,7 +27,7 @@ export default function LogoutPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
       <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Terminating session...</p>
+      <p className="text-sm font-bold text-gray-400  tracking-widest">Terminating session...</p>
     </div>
   );
 }

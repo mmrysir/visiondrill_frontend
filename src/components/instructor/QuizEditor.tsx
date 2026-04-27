@@ -155,8 +155,8 @@ export default function QuizEditor({ lessonId, courseId, onClose }: QuizEditorPr
               <HelpCircle size={24} />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Quiz Editor</h2>
-              <p className="text-sm font-medium text-gray-400 uppercase">Lesson #{lessonId} • Manage interactive questions</p>
+              <h2 className="text-2xl font-black text-gray-900  tracking-tight">Quiz Editor</h2>
+              <p className="text-sm font-medium text-gray-400 ">Lesson #{lessonId} • Manage interactive questions</p>
             </div>
           </div>
           <button onClick={onClose} className="p-3 hover:bg-gray-100 rounded-full transition-colors text-gray-400">
@@ -173,7 +173,7 @@ export default function QuizEditor({ lessonId, courseId, onClose }: QuizEditorPr
           ) : questions.length === 0 ? (
             <div className="py-20 text-center bg-white rounded-3xl border-2 border-dashed border-gray-100">
                <HelpCircle className="mx-auto mb-4 text-gray-200" size={64} />
-               <h3 className="text-xl font-black text-gray-800 uppercase mb-2">No questions yet</h3>
+               <h3 className="text-xl font-black text-gray-800  mb-2">No questions yet</h3>
                <p className="text-gray-400 font-medium mb-8">Create a challenging quiz for your students.</p>
                <Button onClick={handleAddQuestion} className="px-8 py-4">Add Your First Question</Button>
             </div>
@@ -183,7 +183,7 @@ export default function QuizEditor({ lessonId, courseId, onClose }: QuizEditorPr
                 <div key={q.id} className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow group">
                   <div className="flex justify-between items-start mb-6">
                      <div className="flex-grow max-w-2xl">
-                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Question {qIndex + 1}</label>
+                        <label className="block text-[10px] font-black text-gray-400  tracking-widest mb-2">Question {qIndex + 1}</label>
                         <input 
                           type="text" 
                           value={q.question} 
@@ -200,7 +200,7 @@ export default function QuizEditor({ lessonId, courseId, onClose }: QuizEditorPr
                   </div>
 
                   <div className="space-y-3 mb-8">
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Answers</label>
+                    <label className="block text-[10px] font-black text-gray-400  tracking-widest mb-2">Answers</label>
                     {q.answers.map((a, aIndex) => (
                       <div key={aIndex} className="flex items-center gap-3 group/answer">
                         <button 
@@ -232,17 +232,17 @@ export default function QuizEditor({ lessonId, courseId, onClose }: QuizEditorPr
 
                   <div className="flex items-center justify-between pt-6 border-t border-gray-50">
                      <div className="flex items-center gap-4">
-                        <button className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 hover:text-blue-600 transition-colors">
+                        <button className="flex items-center gap-2 text-[10px] font-black  text-gray-400 hover:text-blue-600 transition-colors">
                            <Video size={14} /> Add Hint Video
                         </button>
-                        <button className="flex items-center gap-2 text-[10px] font-black uppercase text-gray-400 hover:text-blue-600 transition-colors">
+                        <button className="flex items-center gap-2 text-[10px] font-black  text-gray-400 hover:text-blue-600 transition-colors">
                            <FileUp size={14} /> Upload Doc
                         </button>
                      </div>
                      <Button 
                         onClick={() => handleSaveQuestion(qIndex)} 
                         disabled={isSaving}
-                        className="flex items-center gap-2 h-10 px-4 text-xs tracking-widest uppercase"
+                        className="flex items-center gap-2 h-10 px-4 text-xs tracking-widest "
                       >
                         {isSaving ? <Loader2 className="animate-spin" size={14} /> : <Save size={14} />} Save Question
                      </Button>
@@ -252,7 +252,7 @@ export default function QuizEditor({ lessonId, courseId, onClose }: QuizEditorPr
               
               <button 
                  onClick={handleAddQuestion}
-                 className="w-full py-6 border-2 border-dashed border-gray-200 rounded-3xl text-gray-400 font-black uppercase tracking-widest text-sm hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50/30 transition-all flex items-center justify-center gap-3 group"
+                 className="w-full py-6 border-2 border-dashed border-gray-200 rounded-3xl text-gray-400 font-black  tracking-widest text-sm hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50/30 transition-all flex items-center justify-center gap-3 group"
               >
                  <Plus size={24} className="group-hover:rotate-90 transition-transform" /> Add New Question
               </button>

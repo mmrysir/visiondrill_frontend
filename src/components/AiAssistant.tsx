@@ -126,7 +126,7 @@ export default function AiAssistant({ lessonId, videoUrl, lessonTitle }: { lesso
             </div>
             <div>
                <h4 className="text-white font-black tracking-tight text-sm">VisionDrill AI Assistant</h4>
-               <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest">DeepSeek Engine Enabled</p>
+               <p className="text-[10px] text-blue-400 font-bold  tracking-widest">DeepSeek Engine Enabled</p>
             </div>
          </div>
          <div className="flex items-center gap-2">
@@ -149,7 +149,7 @@ export default function AiAssistant({ lessonId, videoUrl, lessonTitle }: { lesso
                      <button 
                          key={tag}
                          onClick={() => { setInput(tag); }}
-                         className="text-[10px] font-black text-slate-500 border border-white/10 rounded-xl py-2 hover:bg-white/5 hover:text-blue-400 transition-all uppercase tracking-widest"
+                         className="text-[10px] font-black text-slate-500 border border-white/10 rounded-xl py-2 hover:bg-white/5 hover:text-blue-400 transition-all  tracking-widest"
                      >
                         {tag}
                      </button>

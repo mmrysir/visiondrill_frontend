@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-export default function MessagingPage() {
+export default function InstructorMessagingPage() {
   const [threads, setThreads] = useState<any[]>([]);
   const [activeThread, setActiveThread] = useState<any>(null);
   const [messages, setMessages] = useState<any[]>([]);
@@ -37,8 +37,8 @@ export default function MessagingPage() {
 
   const fetchThreads = async () => {
     try {
-      const res = await api.get('/student/messages/threads');
-      // Safety check: ensure threads is an array
+      // Assuming instructor endpoints follow the pattern
+      const res = await api.get('/instructor/messages/threads');
       const data = Array.isArray(res.data) ? res.data : [];
       setThreads(data);
       if (data.length > 0 && !activeThread) {
@@ -46,7 +46,7 @@ export default function MessagingPage() {
       }
     } catch (err) {
       console.error(err);
-      setThreads([]); // Fallback to empty array
+      setThreads([]);
     } finally {
       setIsLoadingThreads(false);
     }
@@ -54,13 +54,13 @@ export default function MessagingPage() {
 
   const handleSelectThread = async (thread: any) => {
     setActiveThread(thread);
-    setIsMobileThreadView(false); // Switch view on mobile
+    setIsMobileThreadView(false);
     setIsLoadingMessages(true);
     try {
-      const res = await api.get(`/student/messages/threads/${thread.id}`);
+      const res = await api.get(`/instructor/messages/threads/${thread.id}`);
       setMessages(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      toast.error('Could not retrieve node history.');
+      toast.error('Could not retrieve conversation history.');
     } finally {
       setIsLoadingMessages(false);
     }
@@ -74,7 +74,7 @@ export default function MessagingPage() {
     setReply('');
 
     try {
-      const res = await api.post(`/student/messages/threads/${activeThread.id}/reply`, {
+      const res = await api.post(`/instructor/messages/threads/${activeThread.id}/reply`, {
         body: content
       });
       setMessages([...messages, res.data]);
@@ -91,7 +91,7 @@ export default function MessagingPage() {
   if (isLoadingThreads) return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
       <Loader2 className="text-blue-600 animate-spin" size={32} />
-      <p className="text-sm font-bold text-gray-400  tracking-widest">Opening secure channel...</p>
+      <p className="text-sm font-bold text-gray-400 tracking-widest">Opening secure channel...</p>
     </div>
   );
 
@@ -107,7 +107,7 @@ export default function MessagingPage() {
            <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={16} />
               <input 
-                placeholder="Find node conversations..." 
+                placeholder="Find student conversations..." 
                 className="w-full bg-gray-50 border border-transparent rounded-2xl pl-12 pr-4 py-3 text-xs font-semibold focus:bg-white focus:border-blue-100 outline-none transition-all"
               />
            </div>
@@ -124,13 +124,18 @@ export default function MessagingPage() {
              >
                 <div className="flex justify-between items-start mb-2 gap-4">
                    <div className="font-black text-gray-900 text-sm leading-tight truncate">
-                      {thread.course_title || 'General inquiry'}
+                      {thread.student?.name || 'General Inquiry'}
                    </div>
-                   <span className="text-[10px] font-sans text-gray-400 shrink-0">12:34</span>
+                   <span className="text-[10px] font-sans text-gray-400 shrink-0">
+                      {thread.last_message ? new Date(thread.last_message.created_at).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : ''}
+                   </span>
                 </div>
                 <p className="text-xs font-medium text-gray-400 line-clamp-2 leading-relaxed">
                    {thread.last_message?.body || 'No activity recorded yet.'}
                 </p>
+                <div className="mt-2 text-[10px] font-bold text-blue-600">
+                   {thread.course_title}
+                </div>
              </div>
            ))}
            {(!threads || threads.length === 0) && (
@@ -160,13 +165,13 @@ export default function MessagingPage() {
                        <ChevronRight className="rotate-180" size={24} />
                     </button>
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-100 shrink-0">
-                       {activeThread.course_title?.[0] || 'T'}
+                       {activeThread.student?.name?.[0] || 'S'}
                     </div>
                     <div className="min-w-0">
-                       <h3 className="text-base md:text-lg font-black text-gray-900 leading-none truncate">{activeThread.course_title}</h3>
-                       <div className="flex items-center gap-2 mt-1.5 font-bold text-[10px] text-gray-400  tracking-widest">
+                       <h3 className="text-base md:text-lg font-black text-gray-900 leading-none truncate">{activeThread.student?.name}</h3>
+                       <div className="flex items-center gap-2 mt-1.5 font-bold text-[10px] text-gray-400 tracking-widest">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                          <span className="truncate">Node support</span>
+                          <span className="truncate">{activeThread.course_title}</span>
                        </div>
                     </div>
                  </div>
@@ -184,14 +189,14 @@ export default function MessagingPage() {
                    </div>
                  ) : (
                    messages.map((msg, i) => (
-                     <div key={i} className={`flex ${msg.sender_type === 'student' ? 'justify-end' : 'justify-start'}`}>
+                     <div key={i} className={`flex ${msg.sender_type === 'instructor' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`max-w-[85%] md:max-w-xl rounded-[2rem] md:rounded-[2.5rem] px-6 md:px-8 py-4 md:py-6 text-sm font-medium leading-relaxed ${
-                          msg.sender_type === 'student' 
+                          msg.sender_type === 'instructor' 
                             ? 'bg-blue-600 text-white shadow-xl shadow-blue-100' 
                             : 'bg-white border border-gray-100 text-gray-700 shadow-sm'
                         }`}>
                            {msg.body}
-                           <div className={`text-[10px] mt-4 font-sans ${msg.sender_type === 'student' ? 'text-blue-200' : 'text-gray-400'}`}>
+                           <div className={`text-[10px] mt-4 font-sans ${msg.sender_type === 'instructor' ? 'text-blue-200' : 'text-gray-400'}`}>
                               {new Date(msg.created_at).toLocaleTimeString('en-GB')}
                            </div>
                         </div>
@@ -206,7 +211,7 @@ export default function MessagingPage() {
                     <input 
                       value={reply}
                       onChange={(e) => setReply(e.target.value)}
-                      placeholder="Type inquiry..." 
+                      placeholder="Type response..." 
                       className="w-full bg-gray-50 border border-transparent rounded-[2rem] pl-6 md:pl-8 pr-28 md:pr-32 py-4 md:py-5 text-sm font-medium focus:bg-white focus:border-blue-100 outline-none transition-all"
                     />
                     <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 md:gap-2">
@@ -215,7 +220,7 @@ export default function MessagingPage() {
                        </button>
                        <button 
                          type="submit"
-                         className="bg-gray-900 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-2xl hover:bg-blue-600 transition-all font-black text-[10px]  tracking-widest shadow-lg active:scale-95"
+                         className="bg-gray-900 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-2xl hover:bg-blue-600 transition-all font-black text-[10px] tracking-widest shadow-lg active:scale-95"
                        >
                           Send
                        </button>
@@ -229,8 +234,8 @@ export default function MessagingPage() {
                  <MessageSquare size={32} />
               </div>
               <div className="max-w-xs">
-                 <h4 className="text-xl md:text-2xl font-black text-gray-900 mb-2 leading-none">No node selected</h4>
-                 <p className="text-sm font-medium text-gray-500 leading-relaxed">Select a curriculum thread to begin.</p>
+                 <h4 className="text-xl md:text-2xl font-black text-gray-900 mb-2 leading-none">No conversation selected</h4>
+                 <p className="text-sm font-medium text-gray-500 leading-relaxed">Select a student thread to begin support.</p>
               </div>
            </div>
          )}

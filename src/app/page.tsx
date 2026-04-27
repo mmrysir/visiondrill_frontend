@@ -6,7 +6,7 @@ import { api } from '@/lib/api';
 import {
   BookOpen, Globe, Brain, Cpu, Activity, Users,
   TrendingUp, Zap, Shield, Award, ChevronRight,
-  Play, Star, Menu, X
+  Play, Star, Menu, X, Flame
 } from 'lucide-react';
 import CourseCard from '@/components/CourseCard';
 import BrandLogo from '@/components/BrandLogo';
@@ -55,7 +55,7 @@ const launchpadFeatures = [
 
 const platformFeatures = [
   { icon: <BookOpen size={18} />, title: 'Expert courses', desc: 'Curated curriculum from vetted professionals.' },
-  { icon: <Brain size={18} />, title: 'AI assistance', desc: 'AI-powered summaries and adaptive learning paths.' },
+  { icon: <Brain size={18} />, title: 'Ai assistance', desc: 'Ai-powered summaries and adaptive learning paths.' },
   { icon: <Users size={18} />, title: 'Cohort groups', desc: 'Learn collaboratively in structured cohorts.' },
   { icon: <Award size={18} />, title: 'Certifications', desc: 'Industry-recognised certificates on completion.' },
   { icon: <Activity size={18} />, title: 'Live analytics', desc: 'Real-time tracking of your progress and milestones.' },
@@ -79,9 +79,18 @@ export default function Home() {
           api.get('/courses/popular'),
           api.get('/me')
         ]);
-        if (courseRes.status === 'fulfilled' && courseRes.value.data?.length > 0) setCourses(courseRes.value.data);
-        if (userRes.status === 'fulfilled') setUser(userRes.value.data);
-      } catch {}
+        if (courseRes.status === 'fulfilled' && courseRes.value.data?.length > 0) {
+          setCourses(courseRes.value.data);
+        }
+        
+        if (userRes.status === 'fulfilled') {
+          setUser(userRes.value.data);
+        } else {
+          setUser(null);
+        }
+      } catch {
+        setUser(null);
+      }
     })();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -107,13 +116,18 @@ export default function Home() {
               <>
                 <Link href="/login" className="text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors">Login</Link>
                 <Link href="/register">
-                  <button className="h-9 px-5 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 transition-all">Join now</button>
+                  <button className="h-9 px-5 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 transition-all">Teach on Visiondrill</button>
                 </Link>
               </>
             ) : (
-              <Link href={user.roles?.some((r: any) => r.name === 'author') ? '/instructor' : '/student'}>
-                <button className="h-9 px-5 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 transition-all">Dashboard</button>
-              </Link>
+              <div className="flex items-center gap-4">
+                <Link href={user.roles?.some((r: any) => r.name === 'author') ? '/instructor' : '/student'}>
+                  <button className="h-9 px-5 border border-gray-200 text-gray-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-all">Dashboard</button>
+                </Link>
+                <Link href="/logout">
+                  <button className="h-9 px-5 bg-red-50 text-red-600 rounded-lg font-semibold text-sm hover:bg-red-100 transition-all">Logout</button>
+                </Link>
+              </div>
             )}
           </div>
 
@@ -196,9 +210,9 @@ export default function Home() {
 
             <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-gray-100">
               {[
-                { icon: <Shield size={14} />, label: 'Verified certificates' },
+                { icon: <Shield size={14} />, label: 'Certification provided' },
                 { icon: <Globe size={14} />, label: 'Global access' },
-                { icon: <Brain size={14} />, label: 'AI-powered learning' },
+                { icon: <Brain size={14} />, label: 'Ai-powered learning' },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2 text-gray-400">
                   {item.icon}
@@ -284,19 +298,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Partners ── */}
-      <section id="partners" className="py-10 sm:py-12 border-y border-gray-100 bg-gray-50">
+      {/* ── Popular course scroll ── */}
+      <section className="py-12 bg-[#FDFDFF] border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold text-gray-400 mb-6 sm:mb-8">Our partners & sponsors</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-16">
-            {partners.map((p, i) => (
-              <img key={i} src={p.src} alt={p.alt} className="h-7 sm:h-9 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-[#007AB0] rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-100">
+                <Flame size={20} fill="currentColor" />
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Featured courses</h2>
+            </div>
+            <Link href="/courses" className="text-sm font-bold text-gray-400 hover:text-blue-600 flex items-center gap-1 transition-colors">
+              Explore all <ChevronRight size={14} />
+            </Link>
+          </div>
+
+          <div className="relative group">
+            <div className="flex gap-6 overflow-x-auto pb-10 no-scrollbar scroll-smooth">
+                {(courses.length > 0 ? courses : mockCourses).map(course => (
+                  <div key={course.id} className="w-[300px] sm:w-[380px] shrink-0">
+                    <CourseCard course={course} />
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Trending courses (Grid) ── */}
+      <section id="courses" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-end mb-8 sm:mb-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-[#007AB0] rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-100">
+                  <TrendingUp size={20} />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Trending courses</h2>
+              </div>
+            </div>
+            <Link href="/courses" className="text-sm font-semibold text-gray-400 hover:text-blue-600 flex items-center gap-1 transition-colors flex-shrink-0">
+              View all <ChevronRight size={14} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+            {(courses.length > 0 ? courses : mockCourses).map(course => (
+              <CourseCard key={course.id} course={course} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Platform Features ── */}
+      {/* ── Platform features ── */}
       <section id="features" className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8 sm:mb-12">
@@ -309,55 +363,37 @@ export default function Home() {
                 Everything you need<br /><span className="text-gray-300">to learn & grow.</span>
               </h2>
             </div>
-            <span className="hidden sm:flex items-center gap-1 text-xs font-medium text-gray-300">
-              Scroll <ChevronRight size={11} />
-            </span>
           </div>
-        </div>
 
-        {/* Horizontal scroll strip */}
-        <div className="relative">
-          <div className="absolute right-0 top-0 h-full w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-          <div
-            className="flex gap-3 sm:gap-4 overflow-x-auto pb-3 px-4 sm:px-6 lg:px-8"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {platformFeatures.map((feat, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 p-5 sm:p-6 bg-white border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all group cursor-default rounded-xl"
-                style={{ minWidth: '200px' }}
-              >
-                <div className="w-10 h-10 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-5 group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110 transition-all">
-                  {feat.icon}
+          <div className="relative">
+            <div
+              className="flex gap-3 sm:gap-4 overflow-x-auto pb-3 no-scrollbar"
+            >
+              {platformFeatures.map((feat, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 p-5 sm:p-6 bg-white border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all group cursor-default rounded-xl"
+                  style={{ minWidth: '200px' }}
+                >
+                  <div className="w-10 h-10 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-5 group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110 transition-all">
+                    {feat.icon}
+                  </div>
+                  <h3 className="text-sm font-bold text-gray-900 mb-1.5">{feat.title}</h3>
+                  <p className="text-xs font-medium text-gray-400 leading-relaxed">{feat.desc}</p>
                 </div>
-                <h3 className="text-sm font-bold text-gray-900 mb-1.5">{feat.title}</h3>
-                <p className="text-xs font-medium text-gray-400 leading-relaxed">{feat.desc}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Popular Courses ── */}
-      <section id="courses" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-end mb-8 sm:mb-12">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Star size={13} className="text-blue-600" fill="currentColor" />
-                <span className="text-xs font-semibold text-blue-600">Popular courses</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tighter">Trending curriculum.</h2>
-            </div>
-            <Link href="/courses" className="text-sm font-semibold text-gray-400 hover:text-blue-600 flex items-center gap-1 transition-colors flex-shrink-0">
-              All courses <ChevronRight size={14} />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
-            {(courses.length > 0 ? courses : mockCourses).map(course => (
-              <CourseCard key={course.id} course={course} />
+      {/* ── Partners (Moved down before footer) ── */}
+      <section id="partners" className="py-16 sm:py-20 border-t border-gray-100 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs font-black text-gray-400 mb-12 tracking-[0.3em]">Our premium partners & sponsors</p>
+          <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-16 md:gap-24">
+            {partners.map((p, i) => (
+              <img key={i} src={p.src} alt={p.alt} className="h-8 sm:h-10 object-contain hover:scale-110 transition-all duration-500" />
             ))}
           </div>
         </div>

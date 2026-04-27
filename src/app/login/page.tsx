@@ -61,11 +61,11 @@ export default function LoginPage() {
            <div className="mt-12 grid grid-cols-2 gap-3 max-w-lg">
               <div className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
                  <Zap className="text-blue-400 mb-3" size={16} />
-                 <p className="text-[9px] font-black uppercase text-blue-200">Market ready</p>
+                 <p className="text-[9px] font-black  text-blue-200">Market ready</p>
               </div>
               <div className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
                  <Zap className="text-blue-400 mb-3" size={16} />
-                 <p className="text-[9px] font-black uppercase text-blue-200">Expert led</p>
+                 <p className="text-[9px] font-black  text-blue-200">Expert led</p>
               </div>
            </div>
         </div>
@@ -73,7 +73,7 @@ export default function LoginPage() {
 
       {/* Right Login Section */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white relative">
-        <Link href="/" className="absolute top-10 left-10 flex items-center text-[9px] font-black text-gray-400 hover:text-blue-600 transition-colors group uppercase tracking-widest">
+        <Link href="/" className="absolute top-10 left-10 flex items-center text-[9px] font-black text-gray-400 hover:text-blue-600 transition-colors group  tracking-widest">
            <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" /> Back home
         </Link>
 
@@ -92,7 +92,7 @@ export default function LoginPage() {
             
             <div className="space-y-3">
               <div className="group">
-                <label className="block text-[9px] font-black text-gray-400 mb-2 transition-colors group-focus-within:text-blue-600 uppercase tracking-widest">Email address</label>
+                <label className="block text-[9px] font-black text-gray-400 mb-2 transition-colors group-focus-within:text-blue-600  tracking-widest">Email address</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-gray-300">
                     <Mail size={14} />
@@ -110,8 +110,8 @@ export default function LoginPage() {
 
               <div className="group">
                 <div className="flex justify-between items-end mb-2">
-                   <label className="block text-[9px] font-black text-gray-400 transition-colors group-focus-within:text-blue-600 uppercase tracking-widest">Password</label>
-                   <Link href="/forgot-password" title="Forgot Password" className="text-[9px] font-black text-blue-600 uppercase tracking-widest">Forgot?</Link>
+                   <label className="block text-[9px] font-black text-gray-400 transition-colors group-focus-within:text-blue-600  tracking-widest">Password</label>
+                   <Link href="/forgot-password" title="Forgot Password" className="text-[9px] font-black text-blue-600  tracking-widest">Forgot?</Link>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-gray-300">
@@ -135,7 +135,7 @@ export default function LoginPage() {
                 type="checkbox"
                 className="h-3.5 w-3.5 text-blue-600 focus:ring-blue-50 border-gray-300 rounded cursor-pointer"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-[10px] font-bold text-gray-400 cursor-pointer uppercase tracking-widest">
+              <label htmlFor="remember-me" className="ml-2 block text-[10px] font-bold text-gray-400 cursor-pointer  tracking-widest">
                 Remember
               </label>
             </div>
@@ -143,7 +143,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-12 bg-blue-950 text-white font-black rounded-lg hover:bg-black transition-all shadow-xl shadow-blue-100 active:scale-95 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest"
+              className="w-full h-12 bg-blue-950 text-white font-black rounded-lg hover:bg-black transition-all shadow-xl shadow-blue-100 active:scale-95 flex items-center justify-center gap-2 text-[10px]  tracking-widest"
             >
               {isLoading ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
@@ -154,7 +154,7 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-8 text-center">
-             <p className="text-gray-400 font-medium text-[10px] uppercase tracking-widest">
+             <p className="text-gray-400 font-medium text-[10px]  tracking-widest">
                 New to Visiondrill?{' '}
                 <Link href="/register" className="text-blue-600 font-black hover:underline underline-offset-4">
                   Register

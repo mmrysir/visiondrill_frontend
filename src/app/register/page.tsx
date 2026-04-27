@@ -81,7 +81,7 @@ export default function RegisterPage() {
               <img src="/images/visiondrill-logo-icon.png" alt="VisionDrill" className="w-10 h-10 object-contain bg-white rounded-xl p-2 shadow-2xl" />
               <div className="flex flex-col">
                  <span className="text-2xl font-black tracking-tighter">Visiondrill</span>
-                 <span className="text-[9px] font-black uppercase tracking-widest text-blue-400 opacity-60">
+                 <span className="text-[9px] font-black  tracking-widest text-blue-400 opacity-60">
                     {isInstructor ? 'Instructor core' : 'Student core'}
                  </span>
               </div>
@@ -102,7 +102,7 @@ export default function RegisterPage() {
                 "Verified professional courses",
                 "Personalized learning paths"
               ]).map((text, i) => (
-                <div key={i} className="flex items-center gap-4 text-blue-100/50 font-bold text-[9px] uppercase tracking-widest">
+                <div key={i} className="flex items-center gap-4 text-blue-100/50 font-bold text-[9px]  tracking-widest">
                    <CheckCircle2 size={14} className="text-blue-400" /> {text}
                 </div>
               ))}
@@ -112,7 +112,7 @@ export default function RegisterPage() {
 
       {/* Right Register Section */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white relative">
-        <Link href="/login" className="absolute top-10 left-10 flex items-center text-[9px] font-black text-gray-400 hover:text-blue-600 transition-colors group uppercase tracking-widest">
+        <Link href="/login" className="absolute top-10 left-10 flex items-center text-[9px] font-black text-gray-400 hover:text-blue-600 transition-colors group  tracking-widest">
            <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" /> Sign in
         </Link>
 
@@ -136,7 +136,7 @@ export default function RegisterPage() {
             
             <div className="grid grid-cols-2 gap-3">
               <div className="group">
-                <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600 uppercase tracking-widest">First name</label>
+                <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600  tracking-widest">First name</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-300">
                     <User size={14} />
@@ -153,7 +153,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="group">
-                <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600 uppercase tracking-widest">Last name</label>
+                <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600  tracking-widest">Last name</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-300">
                     <User size={14} />
@@ -171,7 +171,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="group">
-              <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600 uppercase tracking-widest">Email address</label>
+              <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600  tracking-widest">Email address</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-300">
                   <Mail size={14} />
@@ -188,7 +188,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="group">
-              <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600 uppercase tracking-widest">Secure password</label>
+              <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600  tracking-widest">Secure password</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-300">
                   <Lock size={14} />
@@ -206,7 +206,7 @@ export default function RegisterPage() {
 
             {/* Anti-Robot Verification */}
             <div className="group pt-1">
-              <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600 uppercase tracking-widest">
+              <label className="block text-[9px] font-black text-gray-400 mb-1.5 transition-colors group-focus-within:text-blue-600  tracking-widest">
                 Verification: {mathTask.num1} + {mathTask.num2} = ?
               </label>
               <input
@@ -219,14 +219,14 @@ export default function RegisterPage() {
               />
             </div>
 
-            <p className="text-[8px] font-bold text-gray-400 text-center py-2 uppercase tracking-widest">
+            <p className="text-[8px] font-bold text-gray-400 text-center py-2  tracking-widest">
                By joining, you agree to our <span className="text-gray-900">Terms</span> and <span className="text-gray-900">Privacy</span>.
             </p>
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-12 bg-blue-950 text-white font-black rounded-lg hover:bg-black transition-all shadow-xl shadow-blue-100 active:scale-95 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest"
+              className="w-full h-12 bg-blue-950 text-white font-black rounded-lg hover:bg-black transition-all shadow-xl shadow-blue-100 active:scale-95 flex items-center justify-center gap-2 text-[10px]  tracking-widest"
             >
               {isLoading ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="max-w-4xl mx-auto py-12 px-6 lg:py-24">
-        <Link href="/" className="inline-flex items-center text-xs font-black uppercase tracking-widest text-gray-400 hover:text-blue-600 transition-colors group mb-12">
+        <Link href="/" className="inline-flex items-center text-xs font-black  tracking-widest text-gray-400 hover:text-blue-600 transition-colors group mb-12">
            <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Home
         </Link>
         
@@ -17,10 +17,10 @@ export default function PrivacyPage() {
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
                  <ShieldCheck size={24} />
               </div>
-              <h1 className="text-4xl font-black text-gray-900 uppercase tracking-tighter">Privacy Policy</h1>
+              <h1 className="text-4xl font-black text-gray-900  tracking-tighter">Privacy Policy</h1>
            </div>
            
-           <div className="prose prose-blue max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-headings:text-gray-900 prose-p:font-medium prose-p:text-gray-500 prose-p:leading-relaxed">
+           <div className="prose prose-blue max-w-none prose-headings:font-black prose-headings: prose-headings:tracking-tight prose-headings:text-gray-900 prose-p:font-medium prose-p:text-gray-500 prose-p:leading-relaxed">
               <p>Last updated: April 25, 2026</p>
               
               <h3>1. Information We Collect</h3>

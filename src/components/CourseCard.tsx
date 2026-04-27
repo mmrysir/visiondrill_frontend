@@ -31,8 +31,8 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   };
 
   return (
-    <div className="flex flex-col bg-white rounded-[32px] border border-gray-100 hover:border-blue-100 hover:shadow-2xl hover:shadow-blue-200/40 transition-all duration-500 cursor-pointer group overflow-hidden">
-      <div className="relative aspect-[16/10] overflow-hidden">
+    <div className="flex flex-col bg-white rounded-[32px] border border-gray-100 hover:border-blue-100 hover:shadow-2xl hover:shadow-blue-200/40 transition-all duration-500 cursor-pointer group overflow-hidden h-full">
+      <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
         <Link href={`/course/${course.slug}`}>
           <img
             className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
@@ -82,7 +82,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           {course.progress_percentage !== undefined && (
             <div className="space-y-2">
               <div className="flex justify-between items-center px-1">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Progress</span>
+                <span className="text-[10px] font-bold text-gray-400  tracking-wider">Progress</span>
                 <span className="text-[10px] font-bold text-blue-600">{course.progress_percentage}%</span>
               </div>
               <div className="w-full h-1.5 bg-gray-50 rounded-full overflow-hidden border border-gray-100 p-[2px]">
@@ -99,7 +99,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
             <div className="text-sm font-black text-gray-950 flex flex-col items-end leading-tight">
               {course.isPaid ? (
                 <>
-                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider line-through decoration-red-500/50">${(parseFloat(course.formattedPrice) * 1.5).toFixed(2)}</span>
+                  <span className="text-[10px] text-gray-400 font-bold  tracking-wider line-through decoration-red-500/50">${(parseFloat(course.formattedPrice) * 1.5).toFixed(2)}</span>
                   <span className="text-blue-600 text-lg tracking-tight">${course.formattedPrice}</span>
                 </>
               ) : (

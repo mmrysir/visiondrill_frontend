@@ -70,15 +70,15 @@ export default function InstructorDashboard() {
            <div className="absolute top-0 right-0 p-32 bg-blue-500/10 blur-[80px] rounded-full -mr-20 -mt-20"></div>
            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-md">
-                 <p className="text-[9px] font-black uppercase tracking-[0.3em] mb-3 text-blue-400">Command Center</p>
+                 <p className="text-[9px] font-black  tracking-[0.3em] mb-3 text-blue-400">Command Center</p>
                  <h1 className="text-3xl md:text-4xl font-black tracking-tight leading-tight mb-6">
                     Manage your curriculum throughput
                  </h1>
                  <div className="flex gap-4">
-                    <button className="flex items-center gap-3 px-6 py-3 bg-blue-600 text-white text-[10px] font-black rounded-full hover:bg-blue-700 transition-all uppercase tracking-widest">
+                    <button className="flex items-center gap-3 px-6 py-3 bg-blue-600 text-white text-[10px] font-black rounded-full hover:bg-blue-700 transition-all  tracking-widest">
                        Quick publish <Zap size={14} fill="white" />
                     </button>
-                    <button className="flex items-center gap-3 px-6 py-3 bg-white/10 text-white text-[10px] font-black rounded-full hover:bg-white/20 transition-all uppercase tracking-widest backdrop-blur-md border border-white/5">
+                    <button className="flex items-center gap-3 px-6 py-3 bg-white/10 text-white text-[10px] font-black rounded-full hover:bg-white/20 transition-all  tracking-widest backdrop-blur-md border border-white/5">
                        View analytics
                     </button>
                  </div>
@@ -86,14 +86,14 @@ export default function InstructorDashboard() {
               
               <div className="flex gap-10">
                  <div className="text-center">
-                    <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Impact</p>
-                    <p className="text-3xl font-black font-mono">{stats?.total_students || '0'}</p>
+                    <p className="text-[10px] font-black text-gray-500  tracking-widest mb-1">Impact</p>
+                    <p className="text-3xl font-black font-sans">{stats?.total_students || '0'}</p>
                     <p className="text-[9px] text-emerald-400 font-bold mt-1">Total assets</p>
                  </div>
                  <div className="w-[1px] h-12 bg-white/10 mt-2" />
                  <div className="text-center">
-                    <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Revenue</p>
-                    <p className="text-3xl font-black font-mono">{stats?.total_earnings || '0'}</p>
+                    <p className="text-[10px] font-black text-gray-500  tracking-widest mb-1">Revenue</p>
+                    <p className="text-3xl font-black font-sans">{stats?.total_earnings || '0'}</p>
                     <p className="text-[9px] text-blue-400 font-bold mt-1">KES total</p>
                  </div>
               </div>
@@ -111,7 +111,7 @@ export default function InstructorDashboard() {
         <section>
            <div className="flex items-center justify-between mb-8">
               <h3 className="text-xl font-black text-gray-900 tracking-tight">Active course assets</h3>
-              <Link href="/instructor/courses" className="text-blue-600 text-[10px] font-black uppercase tracking-widest hover:underline">View fleet</Link>
+              <Link href="/instructor/courses" className="text-blue-600 text-[10px] font-black  tracking-widest hover:underline">View fleet</Link>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -123,7 +123,7 @@ export default function InstructorDashboard() {
                    <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
                       <div>
                          <div className="flex items-center justify-between mb-2">
-                           <span className={`text-[9px] font-black px-3 py-1 rounded-lg uppercase tracking-widest ${
+                           <span className={`text-[9px] font-black px-3 py-1 rounded-lg  tracking-widest ${
                              course.status === 'published' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'
                            }`}>
                              {course.status}
@@ -137,9 +137,9 @@ export default function InstructorDashboard() {
                       <div className="flex items-center justify-between gap-4">
                          <div className="flex items-center gap-2">
                             <Users size={14} className="text-gray-300" />
-                            <span className="text-[10px] font-black text-gray-400 font-mono">142 students</span>
+                            <span className="text-[10px] font-black text-gray-400 font-sans">142 students</span>
                          </div>
-                         <p className="text-sm font-black text-gray-900 font-mono">KES {course.price}</p>
+                         <p className="text-sm font-black text-gray-900 font-sans">KES {course.price}</p>
                       </div>
                    </div>
                 </div>
@@ -163,16 +163,16 @@ export default function InstructorDashboard() {
                    <div className="absolute bottom-1 right-1 w-8 h-8 bg-emerald-500 border-4 border-white rounded-full" />
                 </div>
                 <h3 className="text-xl font-black text-gray-900 leading-tight">Welcome back, {user?.first_name}</h3>
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">{user?.role === 'instructor' ? 'Executive Instructor' : 'System Operator'}</p>
+                <p className="text-[10px] font-bold text-gray-400  tracking-widest mt-2">{user?.role === 'instructor' ? 'Executive Instructor' : 'System Operator'}</p>
                 
                 <div className="grid grid-cols-2 gap-4 w-full mt-10">
                    <div className="p-4 bg-gray-50 rounded-2xl">
-                      <p className="text-lg font-black font-mono text-gray-900">{stats?.total_students || 0}</p>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">Students</p>
+                      <p className="text-lg font-black font-sans text-gray-900">{stats?.total_students || 0}</p>
+                      <p className="text-[9px] font-bold text-gray-400  tracking-widest mt-1">Students</p>
                    </div>
                    <div className="p-4 bg-gray-50 rounded-2xl">
-                      <p className="text-lg font-black font-mono text-gray-900">{courses.length}</p>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">Active nodes</p>
+                      <p className="text-lg font-black font-sans text-gray-900">{courses.length}</p>
+                      <p className="text-[9px] font-bold text-gray-400  tracking-widest mt-1">Active nodes</p>
                    </div>
                 </div>
              </div>
@@ -181,7 +181,7 @@ export default function InstructorDashboard() {
           {/* Revenue Velocity Graph Strip */}
           <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm">
              <div className="flex items-center justify-between mb-8">
-                <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest">Revenue velocity</h4>
+                <h4 className="text-sm font-black text-gray-900  tracking-widest">Revenue velocity</h4>
                 <TrendingUp size={16} className="text-emerald-500" />
              </div>
              <div className="flex items-end justify-between gap-2 h-32">
@@ -196,7 +196,7 @@ export default function InstructorDashboard() {
 
           {/* Recent Enrollments Assets */}
           <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 space-y-6 shadow-sm">
-             <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest mb-2">Student activity</h4>
+             <h4 className="text-sm font-black text-gray-900  tracking-widest mb-2">Student activity</h4>
              {[1, 2, 3, 4].map(i => (
                <div key={i} className="flex items-center gap-4 group cursor-pointer hover:bg-gray-50 transition-all rounded-2xl -mx-2 p-2">
                   <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
@@ -204,12 +204,12 @@ export default function InstructorDashboard() {
                   </div>
                   <div className="min-w-0">
                      <p className="text-xs font-black text-gray-900 truncate tracking-tight">New enrollment recorded</p>
-                     <p className="text-[9px] text-gray-400 font-bold uppercase mt-0.5">2 minutes ago</p>
+                     <p className="text-[9px] text-gray-400 font-bold  mt-0.5">2 minutes ago</p>
                   </div>
                   <ChevronRight size={14} className="ml-auto text-gray-200 group-hover:text-blue-600 transition-colors" />
                </div>
              ))}
-             <button className="w-full py-4 bg-gray-50 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-50 transition-all mt-4">
+             <button className="w-full py-4 bg-gray-50 text-blue-600 text-[10px] font-black  tracking-widest rounded-2xl hover:bg-blue-50 transition-all mt-4">
                 View audit logs
              </button>
           </div>
@@ -226,8 +226,8 @@ function IntelCard({ label, value, icon, trend, color }: any) {
              {icon}
           </div>
           <div>
-             <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{label}</p>
-             <p className="text-xl font-black text-gray-900 font-mono">{value}</p>
+             <p className="text-[9px] font-black text-gray-400  tracking-widest mb-1">{label}</p>
+             <p className="text-xl font-black text-gray-900 font-sans">{value}</p>
           </div>
        </div>
        <div className="text-right">

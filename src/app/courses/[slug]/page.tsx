@@ -89,7 +89,7 @@ const CourseDetailPage = () => {
   if (isLoading) return (
     <div className="h-screen flex flex-col items-center justify-center bg-white">
        <Loader />
-       <p className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 animate-pulse">Syncing Course Repository...</p>
+       <p className="mt-4 text-[10px] font-black  tracking-[0.3em] text-gray-400 animate-pulse">Syncing Course Repository...</p>
     </div>
   );
 
@@ -106,7 +106,7 @@ const CourseDetailPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
             <div className="lg:col-span-2">
               <div className="flex items-center gap-4 mb-8">
-                 <div className="px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest">
+                 <div className="px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/30 text-blue-400 text-[10px] font-black  tracking-widest">
                     Verified Professional Path
                  </div>
                  <div className="flex items-center gap-1 text-yellow-500">
@@ -115,11 +115,11 @@ const CourseDetailPage = () => {
                     <Star size={14} fill="currentColor" />
                     <Star size={14} fill="currentColor" />
                     <Star size={14} fill="currentColor" className="opacity-30" />
-                    <span className="text-white/40 text-[10px] font-black uppercase tracking-widest ml-2">(4.9/5)</span>
+                    <span className="text-white/40 text-[10px] font-black  tracking-widest ml-2">(4.9/5)</span>
                  </div>
               </div>
               
-              <h1 className="text-6xl lg:text-7xl font-black mb-10 leading-[0.95] tracking-tight text-white uppercase italic">
+              <h1 className="text-6xl lg:text-7xl font-black mb-10 leading-[0.95] tracking-tight text-white  italic">
                 {course.course_title}
               </h1>
 
@@ -127,14 +127,14 @@ const CourseDetailPage = () => {
                 <div className="flex items-center gap-4 group cursor-default">
                   <img src={course.author.picture} className="w-12 h-12 rounded-2xl border-2 border-white/10 group-hover:rotate-12 transition-transform object-cover" alt="" />
                   <div>
-                    <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none mb-1">Architected By</p>
+                    <p className="text-[10px] font-black text-white/40  tracking-widest leading-none mb-1">Architected By</p>
                     <p className="text-sm font-black text-white tracking-tight underline decoration-blue-600/50 underline-offset-4">{course.author.fullname}</p>
                   </div>
                 </div>
                 
                 <div className="h-10 w-px bg-white/10 hidden sm:block"></div>
 
-                <div className="flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-white/60">
+                <div className="flex items-center gap-8 text-[10px] font-black  tracking-widest text-white/60">
                    <div className="flex items-center gap-2"><Clock size={16} className="text-blue-500" /> {course.duration || '12.5h Content'}</div>
                    <div className="flex items-center gap-2"><Globe size={16} className="text-blue-500" /> English & Swahili</div>
                    <div className="flex items-center gap-2"><Activity size={16} className="text-blue-500" /> {course.level}</div>
@@ -143,7 +143,7 @@ const CourseDetailPage = () => {
 
               <div className="flex flex-wrap gap-4">
                  {['Certificate', 'Code Repository', 'Assignments', 'Q&A Support'].map(badge => (
-                    <span key={badge} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[9px] font-black uppercase tracking-[0.2em] text-white/50">{badge}</span>
+                    <span key={badge} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[9px] font-black  tracking-[0.2em] text-white/50">{badge}</span>
                  ))}
               </div>
             </div>
@@ -160,7 +160,7 @@ const CourseDetailPage = () => {
                        </div>
                     </div>
                     <div className="absolute bottom-6 left-6 right-6 p-4 glass rounded-2xl text-center">
-                       <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black">Preview Syllabus</span>
+                       <span className="text-[10px] font-black  tracking-[0.3em] text-black">Preview Syllabus</span>
                     </div>
                  </div>
 
@@ -171,12 +171,12 @@ const CourseDetailPage = () => {
                     </div>
 
                     <div className="space-y-3 mb-8">
-                       <Button onClick={() => setShowPaymentModal(true)} className="w-full h-16 text-xs font-black uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-blue-100">Unlock Mastery Now</Button>
-                       <button className="w-full h-16 text-xs font-black uppercase tracking-[0.2em] rounded-2xl border border-gray-100 hover:bg-gray-50 transition-all">Share Path</button>
+                       <Button onClick={() => setShowPaymentModal(true)} className="w-full h-16 text-xs font-black  tracking-[0.2em] rounded-2xl shadow-xl shadow-blue-100">Unlock Mastery Now</Button>
+                       <button className="w-full h-16 text-xs font-black  tracking-[0.2em] rounded-2xl border border-gray-100 hover:bg-gray-50 transition-all">Share Path</button>
                     </div>
 
                     <div className="space-y-4">
-                       <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest text-center border-b border-gray-50 pb-4 mb-4">Enterprise Bundle available</p>
+                       <p className="text-[10px] font-black text-gray-400  tracking-widest text-center border-b border-gray-50 pb-4 mb-4">Enterprise Bundle available</p>
                        <ul className="space-y-4">
                           <Attribute icon={<Play size={14} />} label="Full Lifetime Access" />
                           <Attribute icon={<FileText size={14} />} label="24 Specialized Resources" />
@@ -198,7 +198,7 @@ const CourseDetailPage = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`text-[10px] font-black uppercase tracking-[0.3em] py-2 transition-all border-b-2 relative ${
+                className={`text-[10px] font-black  tracking-[0.3em] py-2 transition-all border-b-2 relative ${
                   activeTab === tab ? 'text-blue-600 border-blue-600' : 'text-gray-400 border-transparent hover:text-gray-900'
                 }`}
               >
@@ -217,7 +217,7 @@ const CourseDetailPage = () => {
             {activeTab === 'description' && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="bg-white p-12 rounded-[3.5rem] border border-gray-100 shadow-sm mb-12">
-                   <h3 className="text-3xl font-black text-gray-900 uppercase tracking-tighter mb-10 italic">Core Competencies</h3>
+                   <h3 className="text-3xl font-black text-gray-900  tracking-tighter mb-10 italic">Core Competencies</h3>
                    <div className="prose prose-lg prose-blue max-w-none font-medium leading-relaxed text-gray-600" dangerouslySetInnerHTML={{ __html: course.description }}></div>
                 </div>
 
@@ -231,8 +231,8 @@ const CourseDetailPage = () => {
             {activeTab === 'curriculum' && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="flex justify-between items-center mb-10 px-4">
-                   <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter italic">Syllabus Architecture</h3>
-                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{course.sections.length} Modules Total</span>
+                   <h3 className="text-xl font-black text-gray-900  tracking-tighter italic">Syllabus Architecture</h3>
+                   <span className="text-[10px] font-black text-gray-400  tracking-widest">{course.sections.length} Modules Total</span>
                 </div>
                 {course.sections.map((section, sIdx) => (
                   <div key={section.id} className="bg-white rounded-[2rem] border border-gray-100 overflow-hidden transition-all group hover:border-blue-200 shadow-sm">
@@ -242,11 +242,11 @@ const CourseDetailPage = () => {
                     >
                       <div className="flex items-center gap-6">
                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${expandedSections.includes(section.id) ? 'bg-blue-600 text-white shadow-xl shadow-blue-100' : 'bg-gray-100 text-gray-400'}`}>
-                          <span className="text-[10px] font-black uppercase">{sIdx + 1 < 10 ? `0${sIdx+1}` : sIdx+1}</span>
+                          <span className="text-[10px] font-black ">{sIdx + 1 < 10 ? `0${sIdx+1}` : sIdx+1}</span>
                         </div>
                         <div>
-                          <h4 className="font-black text-gray-900 leading-none mb-2 uppercase tracking-tighter text-sm">{section.title}</h4>
-                          <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{section.lessons.length} Drill Points</span>
+                          <h4 className="font-black text-gray-900 leading-none mb-2  tracking-tighter text-sm">{section.title}</h4>
+                          <span className="text-[10px] font-black text-gray-400  tracking-[0.2em]">{section.lessons.length} Drill Points</span>
                         </div>
                       </div>
                       <ChevronDown size={20} className={`text-gray-300 transition-transform duration-500 ${expandedSections.includes(section.id) ? 'rotate-180 text-blue-600' : ''}`} />
@@ -261,11 +261,11 @@ const CourseDetailPage = () => {
                                 {lesson.content_type === 'video' ? <PlayCircle size={16} className="text-blue-500" /> : 
                                  lesson.content_type === 'quiz' ? <HelpCircle size={16} className="text-emerald-500" /> : 
                                  <FileText size={16} className="text-purple-500" />}
-                                <span className="text-[11px] font-black uppercase tracking-tight text-gray-600 group-hover/item:text-gray-900 transition-colors">{lesson.title}</span>
+                                <span className="text-[11px] font-black  tracking-tight text-gray-600 group-hover/item:text-gray-900 transition-colors">{lesson.title}</span>
                               </div>
                               <div className="flex items-center gap-4">
-                                 <span className="text-[9px] font-bold text-gray-300 uppercase tracking-widest">12:45</span>
-                                 <button className="text-[9px] font-black text-blue-600 uppercase tracking-widest opacity-0 group-hover/item:opacity-100 transition-all flex items-center gap-1">Details <ArrowRight size={10} /></button>
+                                 <span className="text-[9px] font-bold text-gray-300  tracking-widest">12:45</span>
+                                 <button className="text-[9px] font-black text-blue-600  tracking-widest opacity-0 group-hover/item:opacity-100 transition-all flex items-center gap-1">Details <ArrowRight size={10} /></button>
                               </div>
                             </div>
                           ))}
@@ -287,8 +287,8 @@ const CourseDetailPage = () => {
                     </div>
                   </div>
                   <div className="pt-4">
-                    <h4 className="text-4xl font-black text-gray-900 mb-2 uppercase tracking-tighter italic">{course.author.fullname}</h4>
-                    <p className="text-blue-600 font-black mb-6 text-[10px] uppercase tracking-[0.3em]">{course.author.short_description}</p>
+                    <h4 className="text-4xl font-black text-gray-900 mb-2  tracking-tighter italic">{course.author.fullname}</h4>
+                    <p className="text-blue-600 font-black mb-6 text-[10px]  tracking-[0.3em]">{course.author.short_description}</p>
                     <div className="prose prose-blue text-gray-500 font-medium leading-relaxed italic" dangerouslySetInnerHTML={{ __html: course.author.long_description }}></div>
                   </div>
                 </div>
@@ -305,10 +305,10 @@ const CourseDetailPage = () => {
           <div className="hidden lg:block space-y-12">
             <div className="bg-[#0F172A] rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden group">
                 <div className="relative z-10">
-                  <span className="text-[9px] font-black text-blue-400 uppercase tracking-[0.4em] mb-4 block">Beta Offer</span>
-                  <h4 className="text-3xl font-black mb-6 tracking-tighter uppercase italic leading-none">Global <br /> Access.</h4>
+                  <span className="text-[9px] font-black text-blue-400  tracking-[0.4em] mb-4 block">Beta Offer</span>
+                  <h4 className="text-3xl font-black mb-6 tracking-tighter  italic leading-none">Global <br /> Access.</h4>
                   <p className="text-gray-400 text-sm mb-8 leading-relaxed font-medium">Join our strategic workforce program and get unlimited access to 2,000+ paths.</p>
-                  <button className="w-full h-14 bg-white text-blue-900 font-black rounded-2xl shadow-xl shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all text-[10px] uppercase tracking-widest">Get Unlimited Pro</button>
+                  <button className="w-full h-14 bg-white text-blue-900 font-black rounded-2xl shadow-xl shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all text-[10px]  tracking-widest">Get Unlimited Pro</button>
                 </div>
                 <div className="absolute top-0 right-0 p-8 opacity-5">
                    <Activity size={120} />
@@ -337,7 +337,7 @@ function Attribute({ icon, label }: any) {
    return (
       <li className="flex items-center gap-3 text-gray-500">
          <div className="text-blue-600">{icon}</div>
-         <span className="text-[10px] font-black uppercase tracking-widest">{label}</span>
+         <span className="text-[10px] font-black  tracking-widest">{label}</span>
       </li>
    );
 }
@@ -348,8 +348,8 @@ function FeatureBox({ title, desc, icon }: any) {
          <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
             {icon}
          </div>
-         <h5 className="font-black text-gray-900 uppercase tracking-tight mb-2 text-sm">{title}</h5>
-         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{desc}</p>
+         <h5 className="font-black text-gray-900  tracking-tight mb-2 text-sm">{title}</h5>
+         <p className="text-[10px] font-bold text-gray-400  tracking-widest">{desc}</p>
       </div>
    );
 }
@@ -361,7 +361,7 @@ function InstructorMetric({ label, value, icon }: any) {
             <span className="text-2xl font-black text-gray-900 tracking-tighter italic">{value}</span>
             {icon}
          </div>
-         <div className="text-[9px] text-gray-400 font-black uppercase tracking-widest mt-1 opacity-60 group-hover:opacity-100 transition-opacity">{label}</div>
+         <div className="text-[9px] text-gray-400 font-black  tracking-widest mt-1 opacity-60 group-hover:opacity-100 transition-opacity">{label}</div>
       </div>
    );
 }

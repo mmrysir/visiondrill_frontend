@@ -100,12 +100,12 @@ export default function StaffManagement() {
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
         <div>
-          <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tight mb-2">Staff Registry</h1>
+          <h1 className="text-3xl font-black text-gray-900  tracking-tight mb-2">Staff Registry</h1>
           <p className="text-gray-500 font-medium">Assign programs and monitor employee training compliance.</p>
         </div>
         <Button 
           onClick={() => setShowAssignModal(true)}
-          className="flex items-center gap-2 px-8 py-5 bg-purple-600 hover:bg-purple-700 text-white font-black rounded-3xl uppercase tracking-widest text-[11px] shadow-xl shadow-purple-100"
+          className="flex items-center gap-2 px-8 py-5 bg-purple-600 hover:bg-purple-700 text-white font-black rounded-3xl  tracking-widest text-[11px] shadow-xl shadow-purple-100"
         >
           <PlusCircle size={18} /> Assign Training
         </Button>
@@ -140,7 +140,7 @@ export default function StaffManagement() {
                              {emp.avatar ? <img src={emp.avatar} className="w-full h-full object-cover" /> : emp.name[0]}
                           </div>
                           <div>
-                             <h4 className="font-black text-gray-900 group-hover:text-purple-600 transition-colors uppercase tracking-tight">{emp.name}</h4>
+                             <h4 className="font-black text-gray-900 group-hover:text-purple-600 transition-colors  tracking-tight">{emp.name}</h4>
                              <div className="flex items-center gap-2 mt-1 text-xs font-medium text-gray-400">
                                 <Mail size={12} /> {emp.email}
                              </div>
@@ -152,7 +152,7 @@ export default function StaffManagement() {
                     </div>
 
                     <div className="space-y-4">
-                       <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-gray-400">
+                       <div className="flex items-center justify-between text-[10px] font-black  tracking-widest text-gray-400">
                           <span>Assigned Programs</span>
                           <span>{emp.courses.length} Total</span>
                        </div>
@@ -161,7 +161,7 @@ export default function StaffManagement() {
                              <span className="text-[10px] font-bold text-gray-300 italic">No courses assigned yet.</span>
                           ) : (
                              emp.courses.map(course => (
-                                <div key={course.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wider ${course.completed ? 'bg-green-50 border-green-100 text-green-600' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
+                                <div key={course.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[10px] font-black  tracking-wider ${course.completed ? 'bg-green-50 border-green-100 text-green-600' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
                                    {course.completed ? <CheckCircle size={10} /> : <Target size={10} />}
                                    <span className="truncate max-w-[120px]">{course.title}</span>
                                 </div>
@@ -185,7 +185,7 @@ export default function StaffManagement() {
             <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 mb-6 shadow-inner">
                <BookOpen size={32} />
             </div>
-            <h3 className="text-2xl font-black text-gray-900 uppercase tracking-tight mb-2">Enroll Employee</h3>
+            <h3 className="text-2xl font-black text-gray-900  tracking-tight mb-2">Enroll Employee</h3>
             <p className="text-sm text-gray-500 font-medium mb-8">Assign a mandatory training program to a staff member.</p>
 
             {assignStatus === 'success' ? (
@@ -193,7 +193,7 @@ export default function StaffManagement() {
                  <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center text-green-500 mx-auto animate-bounce">
                     <CheckCircle size={40} />
                  </div>
-                 <p className="text-green-700 font-black uppercase tracking-widest text-sm">Enrollment Complete!</p>
+                 <p className="text-green-700 font-black  tracking-widest text-sm">Enrollment Complete!</p>
               </div>
             ) : (
               <form onSubmit={handleAssign} className="space-y-6">
@@ -201,7 +201,7 @@ export default function StaffManagement() {
                   <div className="p-4 bg-red-50 border border-red-100 rounded-2xl text-red-600 text-xs font-bold">{assignStatus}</div>
                 )}
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Email Address</label>
+                  <label className="block text-[10px] font-black text-gray-400  tracking-widest mb-2">Email Address</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                     <input
@@ -216,7 +216,7 @@ export default function StaffManagement() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Target Program</label>
+                  <label className="block text-[10px] font-black text-gray-400  tracking-widest mb-2">Target Program</label>
                   <select
                     required
                     value={assignForm.course_id}
@@ -233,7 +233,7 @@ export default function StaffManagement() {
                 <Button 
                    type="submit" 
                    disabled={isAssigning || !assignForm.course_id}
-                   className="w-full h-16 bg-purple-600 hover:bg-purple-700 text-white font-black rounded-2xl uppercase tracking-widest text-sm shadow-xl shadow-purple-100 transition-all flex items-center justify-center gap-3"
+                   className="w-full h-16 bg-purple-600 hover:bg-purple-700 text-white font-black rounded-2xl  tracking-widest text-sm shadow-xl shadow-purple-100 transition-all flex items-center justify-center gap-3"
                 >
                   {isAssigning ? <Loader2 className="animate-spin" size={20} /> : <Target size={20} />} Assign Mandatory Training
                 </Button>

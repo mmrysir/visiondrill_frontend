@@ -78,7 +78,7 @@ export default function StudentDashboardPreview() {
            <div className="absolute bottom-0 left-0 p-24 bg-indigo-500/20 blur-[60px] rounded-full -ml-16 -mb-16"></div>
            <div className="relative z-10 w-full flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-md">
-                 <p className="text-[9px] font-black uppercase tracking-[0.3em] mb-2 text-blue-100 opacity-80">
+                 <p className="text-[9px] font-black  tracking-[0.3em] mb-2 text-blue-100 opacity-80">
                    {courses.length > 0 ? `Resume: ${courses[0].course_title}` : 'Online course'}
                  </p>
                  <h1 className="text-2xl md:text-3xl font-black tracking-tight leading-tight mb-6">
@@ -86,7 +86,7 @@ export default function StudentDashboardPreview() {
                  </h1>
                  
                  <Link href={courses.length > 0 ? `/student/learn/${courses[0].slug}` : '/student/courses'}>
-                    <button className="flex items-center gap-3 px-6 py-2.5 bg-gray-900 text-white text-[10px] font-black rounded-full hover:scale-105 active:scale-95 transition-all uppercase tracking-[0.2em]">
+                    <button className="flex items-center gap-3 px-6 py-2.5 bg-gray-900 text-white text-[10px] font-black rounded-full hover:scale-105 active:scale-95 transition-all  tracking-[0.2em]">
                        Join now <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center ml-1"><Play size={8} fill="white" /></div>
                     </button>
                  </Link>
@@ -95,8 +95,8 @@ export default function StudentDashboardPreview() {
               {courses.length > 0 && (
                 <div className="w-full md:w-64 space-y-2.5">
                    <div className="flex justify-between items-end">
-                      <span className="text-[9px] font-black uppercase tracking-widest text-blue-200">Session progress</span>
-                      <span className="text-lg font-black font-mono leading-none">45%</span>
+                      <span className="text-[9px] font-black  tracking-widest text-blue-200">Session progress</span>
+                      <span className="text-lg font-black font-sans leading-none">45%</span>
                    </div>
                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden border border-white/5">
                       <div className="h-full bg-white w-[45%]" />
@@ -213,7 +213,7 @@ export default function StudentDashboardPreview() {
                             <div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
                             <span className="text-xs font-bold text-gray-400">Expert tutor</span>
                          </div>
-                         <p className="text-lg font-black text-gray-900 font-mono text-sm leading-none">KES 4,500</p>
+                         <p className="text-lg font-black text-gray-900 font-sans text-sm leading-none">KES 4,500</p>
                       </div>
                    </div>
                 </div>
@@ -264,7 +264,7 @@ export default function StudentDashboardPreview() {
                {[40, 60, 50, 90, 70, 100, 80].map((h, i) => (
                  <div key={i} className="flex-1 bg-blue-100 rounded-t-xl group relative cursor-pointer flex flex-col justify-end overflow-hidden">
                     <div className="w-full bg-blue-600 opacity-20 group-hover:opacity-100 transition-opacity" style={{ height: `${h}%` }} />
-                    <div className="absolute inset-x-0 bottom-0 py-2 text-center text-[8px] font-mono font-black text-blue-900 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all">
+                    <div className="absolute inset-x-0 bottom-0 py-2 text-center text-[8px] font-sans font-black text-blue-900 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all">
                        {h}%
                     </div>
                  </div>
@@ -311,8 +311,8 @@ function TelemetryCard({ label, value, sub }: any) {
             <BarChart3 size={20} />
           </div>
           <div>
-            <p className="text-[10px] font-bold text-gray-400 tracking-widest mb-0.5 uppercase">{label}</p>
-            <p className="text-xl font-black text-gray-900 leading-none font-mono tracking-tighter">{value}</p>
+            <p className="text-[10px] font-bold text-gray-400 tracking-widest mb-0.5 ">{label}</p>
+            <p className="text-xl font-black text-gray-900 leading-none font-sans tracking-tighter">{value}</p>
             <p className="text-[9px] font-medium text-blue-500 mt-1">{sub}</p>
           </div>
       </div>

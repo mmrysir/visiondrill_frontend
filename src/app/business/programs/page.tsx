@@ -45,17 +45,17 @@ export default function TrainingPrograms() {
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
         <div>
-          <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tight mb-2">Training Programs</h1>
+          <h1 className="text-3xl font-black text-gray-900  tracking-tight mb-2">Training Programs</h1>
           <p className="text-gray-500 font-medium">Internal course catalog and development pathways for your workforce.</p>
         </div>
         <div className="flex items-center gap-3">
            <Link href="/instructor">
-              <Button variant="outline" className="px-6 border-gray-200 text-gray-600 hover:bg-gray-50 uppercase tracking-widest text-[10px] font-black h-14 rounded-2xl">
+              <Button variant="outline" className="px-6 border-gray-200 text-gray-600 hover:bg-gray-50  tracking-widest text-[10px] font-black h-14 rounded-2xl">
                  Switch to Creator View
               </Button>
            </Link>
            <Link href="/instructor/create-course">
-              <Button className="px-8 bg-purple-600 hover:bg-purple-700 text-white font-black rounded-2xl uppercase tracking-widest text-[11px] h-14 shadow-xl shadow-purple-100 flex items-center gap-2">
+              <Button className="px-8 bg-purple-600 hover:bg-purple-700 text-white font-black rounded-2xl  tracking-widest text-[11px] h-14 shadow-xl shadow-purple-100 flex items-center gap-2">
                  <Plus size={18} /> New Internal Program
               </Button>
            </Link>
@@ -65,7 +65,7 @@ export default function TrainingPrograms() {
       {programs.length === 0 ? (
         <div className="py-20 text-center bg-white rounded-[3rem] border-2 border-dashed border-gray-100">
            <BookOpen className="mx-auto mb-6 text-gray-100" size={80} />
-           <h3 className="text-2xl font-black text-gray-800 uppercase mb-2">No programs yet</h3>
+           <h3 className="text-2xl font-black text-gray-800  mb-2">No programs yet</h3>
            <p className="text-gray-400 font-medium max-w-md mx-auto mb-8">You haven't created any internal training programs yet. Start by creating a course to train your employees.</p>
            <Button className="px-10 h-14">Launch Course Creator</Button>
         </div>
@@ -82,14 +82,14 @@ export default function TrainingPrograms() {
                        </div>
                     )}
                     <div className="absolute top-4 left-4">
-                       <span className="px-3 py-1 bg-white/90 backdrop-blur-md rounded-lg text-[9px] font-black uppercase tracking-widest text-purple-600 shadow-sm border border-purple-100">
+                       <span className="px-3 py-1 bg-white/90 backdrop-blur-md rounded-lg text-[9px] font-black  tracking-widest text-purple-600 shadow-sm border border-purple-100">
                           Internal Only
                        </span>
                     </div>
                  </div>
 
                  <div className="p-8 flex-grow flex flex-col">
-                    <h3 className="text-lg font-black text-gray-900 group-hover:text-purple-600 transition-colors uppercase tracking-tight mb-4 flex-grow">
+                    <h3 className="text-lg font-black text-gray-900 group-hover:text-purple-600 transition-colors  tracking-tight mb-4 flex-grow">
                        {program.title}
                     </h3>
                     
@@ -99,14 +99,14 @@ export default function TrainingPrograms() {
                              <Users size={14} />
                              <span className="text-xl font-black">{program.enrolled_count}</span>
                           </div>
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Enrolled</p>
+                          <p className="text-[10px] font-black text-gray-400  tracking-widest">Enrolled</p>
                        </div>
                        <div className="bg-gray-50 p-4 rounded-3xl">
                           <div className="flex items-center gap-2 text-green-600 mb-1">
                              <Award size={14} />
                              <span className="text-xl font-black">78%</span>
                           </div>
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Comp. Rate</p>
+                          <p className="text-[10px] font-black text-gray-400  tracking-widest">Comp. Rate</p>
                        </div>
                     </div>
 

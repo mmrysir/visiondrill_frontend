@@ -38,7 +38,7 @@ export default function StudentLearnLayout({ children }: { children: React.React
         transition-all duration-300 border-r border-gray-100 flex flex-col bg-gray-50/50
       `}>
         <div className="p-6 border-b border-gray-100 bg-white">
-           <Link href="/student/courses" className="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-blue-600 transition-colors uppercase tracking-widest mb-4">
+           <Link href="/student/courses" className="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-blue-600 transition-colors  tracking-widest mb-4">
               <ChevronLeft size={16} /> Back to hub
            </Link>
            <h2 className="text-xl font-black text-gray-900 tracking-tight line-clamp-2">{course?.course_title}</h2>
@@ -47,7 +47,7 @@ export default function StudentLearnLayout({ children }: { children: React.React
         <div className="flex-1 overflow-y-auto py-4">
           {course?.sections?.map((section: any, idx: number) => (
             <div key={section.id} className="mb-2">
-              <div className="px-6 py-3 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">{section.title}</div>
+              <div className="px-6 py-3 text-[10px] font-bold text-gray-400  tracking-[0.2em]">{section.title}</div>
               <div className="space-y-1 px-3">
                 {section.lessons?.map((lesson: any) => {
                   const isActive = pathname.includes(lesson.id);
@@ -89,7 +89,7 @@ export default function StudentLearnLayout({ children }: { children: React.React
                  <div className="w-32 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                     <div className="h-full bg-blue-600" style={{ width: '12%' }} />
                  </div>
-                 <span className="text-xs font-mono font-bold text-blue-600">12%</span>
+                 <span className="text-xs font-sans font-bold text-blue-600">12%</span>
               </div>
            </div>
         </header>

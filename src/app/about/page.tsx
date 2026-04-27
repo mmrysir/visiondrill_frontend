@@ -9,17 +9,17 @@ export default function AboutPage() {
     <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen">
       <div className="max-w-7xl mx-auto py-12 px-6 lg:py-24">
         {/* Navigation */}
-        <Link href="/" className="inline-flex items-center text-xs font-black uppercase tracking-widest text-gray-400 hover:text-blue-600 transition-colors group mb-16">
+        <Link href="/" className="inline-flex items-center text-xs font-black  tracking-widest text-gray-400 hover:text-blue-600 transition-colors group mb-16">
            <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Home
         </Link>
         
         <div className="space-y-16">
           {/* Mission Section */}
           <div className="text-center space-y-4 sm:mx-auto sm:max-w-xl lg:max-w-4xl">
-              <h2 className="text-4xl lg:text-5xl font-black tracking-tighter text-gray-900 uppercase">
+              <h2 className="text-4xl lg:text-5xl font-black tracking-tighter text-gray-900 ">
                   Our Mission
               </h2>
-              <p className="text-lg text-gray-400 font-bold leading-relaxed max-w-2xl mx-auto uppercase tracking-widest text-[10px]">
+              <p className="text-lg text-gray-400 font-bold leading-relaxed max-w-2xl mx-auto  tracking-widest text-[10px]">
                   Build a world-class online interactive learning environment
               </p>
           </div>
@@ -28,7 +28,7 @@ export default function AboutPage() {
           <div className="bg-white rounded-[3rem] shadow-2xl p-8 sm:p-16 border border-gray-100 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_100%_0%,rgba(59,130,246,0.1),transparent)]"></div>
               <div className="text-center space-y-6 sm:mx-auto sm:max-w-xl lg:max-w-4xl relative z-10">
-                  <h2 className="text-3xl lg:text-4xl font-black tracking-tighter text-gray-900 uppercase">
+                  <h2 className="text-3xl lg:text-4xl font-black tracking-tighter text-gray-900 ">
                       What Makes Us Different
                   </h2>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border-l-4 border-blue-500 text-left">
@@ -42,8 +42,8 @@ export default function AboutPage() {
 
           {/* Press Coverage Section */}
           <div className="bg-gray-900 rounded-[3rem] p-16 text-center text-white relative overflow-hidden">
-              <h2 className="text-3xl font-black tracking-tighter uppercase mb-2">In the Press</h2>
-              <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mb-12">Featured in leading publications</p>
+              <h2 className="text-3xl font-black tracking-tighter  mb-2">In the Press</h2>
+              <p className="text-[10px] text-gray-400 font-black  tracking-widest mb-12">Featured in leading publications</p>
               
               <div className="grid gap-6 max-w-3xl mx-auto">
                   {[
@@ -57,7 +57,7 @@ export default function AboutPage() {
                               {i + 1}
                           </div>
                           <div className="flex-1">
-                              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{press.name}</p>
+                              <p className="text-[10px] text-gray-400 font-bold  tracking-widest mb-1">{press.name}</p>
                               <a href={press.link} target="_blank" rel="noreferrer" className="text-white font-bold group-hover:text-blue-400 transition-colors text-sm">
                                   {press.title}
                               </a>

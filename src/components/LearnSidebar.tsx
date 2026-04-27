@@ -17,9 +17,9 @@ export default function LearnSidebar({ sections, activeLessonId, onLessonSelect,
       <div className="p-8 border-b border-gray-100">
         <div className="flex items-center gap-3 mb-1">
            <BookOpen className="text-blue-600" size={16} />
-           <h3 className="font-black text-gray-900 uppercase tracking-[0.15em] text-[10px]">Curriculum Explorer</h3>
+           <h3 className="font-black text-gray-900  tracking-[0.15em] text-[10px]">Curriculum Explorer</h3>
         </div>
-        <p className="text-[10px] font-bold text-gray-400 uppercase">12 Lessons • 4h 30m total</p>
+        <p className="text-[10px] font-bold text-gray-400 ">12 Lessons • 4h 30m total</p>
       </div>
       
       <div className="flex-grow overflow-y-auto no-scrollbar py-4">
@@ -27,8 +27,8 @@ export default function LearnSidebar({ sections, activeLessonId, onLessonSelect,
           <div key={section.id} className="mb-6 px-4">
             <div className="px-4 py-3 bg-gray-50 rounded-xl flex items-center justify-between group cursor-default mb-2">
                <div className="flex flex-col">
-                  <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Module {sIdx + 1}</span>
-                  <h4 className="font-black text-gray-800 text-[11px] uppercase tracking-tighter truncate max-w-[180px]">{section.title}</h4>
+                  <span className="text-[9px] font-black text-gray-400  tracking-widest leading-none mb-1">Module {sIdx + 1}</span>
+                  <h4 className="font-black text-gray-800 text-[11px]  tracking-tighter truncate max-w-[180px]">{section.title}</h4>
                </div>
                <div className="text-[10px] font-black text-blue-600 bg-white px-2 py-0.5 rounded-lg border border-blue-50">
                   {section.lessons.length}
@@ -65,7 +65,7 @@ export default function LearnSidebar({ sections, activeLessonId, onLessonSelect,
                         {lesson.title}
                       </p>
                       <div className="flex items-center gap-2 mt-1">
-                         <span className={`text-[9px] font-bold uppercase tracking-widest ${isActive ? 'text-blue-100/70' : 'text-gray-400'}`}>
+                         <span className={`text-[9px] font-bold  tracking-widest ${isActive ? 'text-blue-100/70' : 'text-gray-400'}`}>
                             {lesson.content?.lesson_type || 'Video'} • 5m
                          </span>
                       </div>
@@ -83,8 +83,8 @@ export default function LearnSidebar({ sections, activeLessonId, onLessonSelect,
       
       <div className="p-8 border-t border-gray-100 bg-gray-50/50">
          <div className="flex items-center justify-between mb-4">
-            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Your Achievement</span>
-            <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">65%</span>
+            <span className="text-[10px] font-black text-gray-400  tracking-widest">Your Achievement</span>
+            <span className="text-[10px] font-black text-blue-600  tracking-widest">65%</span>
          </div>
          <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
             <div className="h-full bg-blue-600 w-[65%] rounded-full"></div>
