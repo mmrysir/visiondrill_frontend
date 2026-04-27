@@ -118,7 +118,7 @@ export default function Home() {
                 <Link href="/register">
                   <button className="h-9 px-5 border border-gray-200 text-gray-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-all">Join us</button>
                 </Link>
-                <Link href="/register">
+                <Link href="/register?type=instructor">
                   <button className="h-9 px-5 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 transition-all">Teach on Visiondrill</button>
                 </Link>
               </div>
@@ -157,7 +157,7 @@ export default function Home() {
                   <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
                     <button className="w-full h-10 border border-gray-100 rounded-xl font-semibold text-sm text-gray-400 hover:bg-gray-50">Join us</button>
                   </Link>
-                  <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/register?type=instructor" onClick={() => setMobileMenuOpen(false)}>
                     <button className="w-full h-10 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700">Teach on Visiondrill</button>
                   </Link>
                 </>
